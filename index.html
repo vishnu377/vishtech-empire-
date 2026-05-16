@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vistech Empire — Master Business Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0f1f3d;
+  --blue: #1d3a7a;
+  --accent: #2563eb;
+  --gold: #f59e0b;
+  --green: #16a34a;
+  --red: #dc2626;
+  --orange: #ea580c;
+  --light: #eff6ff;
+  --mid: #dbeafe;
+  --text: #1e293b;
+  --muted: #64748b;
+  --white: #ffffff;
+  --border: #cbd5e1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  background: #f8fafc;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* ---- PRINT ---- */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; }
+  .section { break-inside: avoid; }
+  .cover { min-height: auto; }
+}
+
+/* ---- TOP NAV ---- */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--navy);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 32px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+.topbar-brand {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold);
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+}
+.topbar-actions { display: flex; gap: 12px; }
+.btn-print {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: 7px 18px;
+  border-radius: 4px;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.btn-print:hover { background: #fbbf24; }
+
+/* ---- COVER ---- */
+.cover {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--navy) 0%, #1e3a8a 50%, #1d3a7a 100%);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.cover-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 12px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+.cover h1 span { color: var(--gold); }
+.cover-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 48px;
+  max-width: 600px;
+}
+.cover-tags {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  justify-content: center;
+  margin-bottom: 60px;
+}
+.cover-tag {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.cover-meta {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.5);
+}
+.cover-divider {
+  width: 80px; height: 3px;
+  background: var(--gold);
+  margin: 32px auto;
+  border-radius: 2px;
+}
+
+/* ---- TOC ---- */
+.toc-wrap {
+  background: var(--white);
+  max-width: 900px;
+  margin: 60px auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+.toc-header {
+  background: var(--navy);
+  padding: 24px 36px;
+  color: var(--gold);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+}
+.toc-list { padding: 24px 36px; list-style: none; }
+.toc-list li { border-bottom: 1px solid var(--border); }
+.toc-list li:last-child { border: none; }
+.toc-list a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 0;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.toc-list a:hover { color: var(--accent); }
+.toc-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: var(--light);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* ---- MAIN CONTAINER ---- */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ---- SECTION ---- */
+.section {
+  background: var(--white);
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+.section-header {
+  background: var(--navy);
+  padding: 28px 36px;
+  display: flex; align-items: center; gap: 16px;
+}
+.section-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--gold);
+  background: rgba(255,255,255,0.1);
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--white);
+  font-weight: 700;
+}
+.section-body { padding: 32px 36px; }
+
+/* ---- SUBSECTIONS ---- */
+.sub { margin-bottom: 36px; }
+.sub:last-child { margin-bottom: 0; }
+.sub h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--mid);
+  letter-spacing: 0.01em;
+}
+.sub p {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.75;
+}
+.sub p.bold { font-weight: 600; }
+.sub p.green { color: var(--green); font-weight: 600; }
+.sub p.orange { color: var(--orange); }
+
+/* ---- BULLETS ---- */
+ul.blist { list-style: none; padding: 0; margin: 10px 0; }
+ul.blist li {
+  padding: 5px 0 5px 22px;
+  position: relative;
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+ul.blist li::before {
+  content: '●';
+  position: absolute; left: 0;
+  color: var(--accent);
+  font-size: 0.6rem;
+  top: 10px;
+}
+ul.blist li.red { color: var(--red); }
+ul.blist li.red::before { color: var(--red); }
+ul.blist li.green { color: var(--green); }
+ul.blist li.green::before { color: var(--green); }
+ul.blist li.bold { font-weight: 600; }
+
+/* ---- NUMBERED LIST ---- */
+ol.nlist { list-style: none; counter-reset: nl; padding: 0; margin: 10px 0; }
+ol.nlist li {
+  counter-increment: nl;
+  padding: 6px 0 6px 32px;
+  position: relative;
+  font-size: 0.93rem;
+  line-height: 1.65;
+}
+ol.nlist li::before {
+  content: counter(nl);
+  position: absolute; left: 0;
+  background: var(--accent);
+  color: white;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  top: 8px;
+}
+
+/* ---- HIGHLIGHT BOX ---- */
+.hl {
+  background: var(--light);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--navy);
+  line-height: 1.65;
+}
+.hl.gold { border-color: var(--gold); background: #fffbeb; color: #78350f; }
+.hl.green { border-color: var(--green); background: #f0fdf4; color: #14532d; }
+.hl.red { border-color: var(--red); background: #fef2f2; color: #7f1d1d; }
+
+/* ---- TABLES ---- */
+.tbl-wrap { overflow-x: auto; margin: 16px 0; border-radius: 8px; box-shadow: 0 1px 8px rgba(0,0,0,0.06); }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+thead tr { background: var(--navy); }
+thead th {
+  padding: 12px 14px;
+  text-align: left;
+  color: white;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+tbody tr:nth-child(even) { background: var(--light); }
+tbody tr:nth-child(odd)  { background: white; }
+tbody tr:last-child td { font-weight: 700; color: var(--navy); background: var(--mid); }
+tbody td { padding: 10px 14px; border-bottom: 1px solid #e2e8f0; line-height: 1.5; }
+tbody tr:hover { background: #dbeafe44; }
+
+/* ---- PHASE CARDS ---- */
+.phase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+.phase-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.phase-card-head {
+  background: var(--blue);
+  color: white;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 0.88rem;
+}
+.phase-card-body { padding: 14px 16px; font-size: 0.88rem; }
+.phase-card-body li { list-style: none; padding: 4px 0 4px 16px; position: relative; }
+.phase-card-body li::before { content: '→'; position: absolute; left: 0; color: var(--gold); font-weight: 700; }
+
+/* ---- INCOME SUMMARY CARDS ---- */
+.income-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin: 20px 0; }
+.income-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 16px;
+  text-align: center;
+}
+.income-card .label { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+.income-card .amount { font-family: 'IBM Plex Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--navy); }
+.income-card .asset { font-size: 0.75rem; color: var(--accent); margin-top: 4px; }
+.income-card.total { background: var(--navy); border-color: var(--navy); }
+.income-card.total .label { color: rgba(255,255,255,0.6); }
+.income-card.total .amount { color: var(--gold); font-size: 1.25rem; }
+.income-card.total .asset { color: rgba(255,255,255,0.5); }
+
+/* ---- LEVEL TABLE ---- */
+.level-row { display: flex; gap: 0; margin: 12px 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.level-num { background: var(--navy); color: var(--gold); padding: 12px 16px; font-family: 'IBM Plex Mono', monospace; font-size: 0.85rem; font-weight: 600; min-width: 80px; display: flex; align-items: center; }
+.level-desc { background: white; padding: 12px 16px; font-size: 0.88rem; flex: 1; }
+.level-you { background: var(--light); padding: 12px 16px; font-size: 0.82rem; color: var(--accent); font-weight: 600; min-width: 140px; display: flex; align-items: center; }
+.level-row.active { border-color: var(--gold); }
+.level-row.active .level-num { background: var(--gold); color: var(--navy); }
+
+/* ---- DAILY SCHEDULE ---- */
+.schedule { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin: 14px 0; }
+.schedule-row { display: flex; border-bottom: 1px solid var(--border); }
+.schedule-row:last-child { border: none; }
+.schedule-time { background: var(--navy); color: var(--gold); padding: 10px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; min-width: 160px; display: flex; align-items: center; }
+.schedule-act { padding: 10px 16px; font-size: 0.88rem; flex: 1; display: flex; align-items: center; }
+.schedule-row:nth-child(even) .schedule-act { background: var(--light); }
+
+/* ---- PRIORITY TABLE ---- */
+.priority-row { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.priority-row:last-child { border: none; }
+.pnum { background: var(--red); color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+.pnum.high { background: var(--orange); }
+.pnum.med { background: var(--accent); }
+.pnum.low { background: var(--muted); }
+.pdet { flex: 1; font-size: 0.9rem; }
+.pdet strong { display: block; font-weight: 700; margin-bottom: 3px; }
+.pdet span { color: var(--muted); font-size: 0.82rem; }
+
+/* ---- FOOTER ---- */
+.doc-footer {
+  text-align: center;
+  padding: 60px 24px 40px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.doc-footer strong { color: var(--navy); font-family: 'Playfair Display', serif; font-size: 1.1rem; display: block; margin-bottom: 6px; }
+
+/* ---- BADGE ---- */
+.badge { display: inline-block; padding: 2px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; }
+.badge.green { background: #dcfce7; color: #166534; }
+.badge.red { background: #fee2e2; color: #991b1b; }
+.badge.blue { background: #dbeafe; color: #1e40af; }
+.badge.gold { background: #fef3c7; color: #92400e; }
+
+/* ---- SPACER ---- */
+.sp { height: 16px; }
+.sp2 { height: 28px; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar no-print">
+  <div class="topbar-brand">⚡ VISTECH EMPIRE</div>
+  <div class="topbar-actions">
+    <button class="btn-print" onclick="window.print()">🖨 Print / Save PDF</button>
+  </div>
+</div>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-eyebrow">Master Business Plan — May 2026</div>
+  <h1>VISTECH<br><span>EMPIRE</span></h1>
+  <p class="cover-subtitle">Complete Business System — 5 Businesses, 1 Founder, Multiple Income Streams</p>
+  <div class="cover-tags">
+    <span class="cover-tag">📱 QR Code SaaS</span>
+    <span class="cover-tag">🚗 Cab Business</span>
+    <span class="cover-tag">💼 Bridge Income</span>
+    <span class="cover-tag">🥜 Dry Fruits</span>
+    <span class="cover-tag">👗 Clothing Store</span>
+  </div>
+  <div class="cover-divider"></div>
+  <p class="cover-meta">Vistech Software Services &nbsp;|&nbsp; Founder: 24 yrs &nbsp;|&nbsp; B.Tech CS + AI 2025 &nbsp;|&nbsp; Jaipur, Rajasthan</p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc-wrap">
+  <div class="toc-header">📋 Table of Contents</div>
+  <ul class="toc-list">
+    <li><a href="#s0">Section 0 — Mindset Analysis: Tu Kahan Hai Duniya Mein <span class="toc-num">S0</span></a></li>
+    <li><a href="#s1">Section 1 — QR Code System: Vistech Software Services <span class="toc-num">S1</span></a></li>
+    <li><a href="#s2">Section 2 — Cab Business: Vishtech Cars <span class="toc-num">S2</span></a></li>
+    <li><a href="#s3">Section 3 — Deal Share Mart: Bridge Income Strategy <span class="toc-num">S3</span></a></li>
+    <li><a href="#s4">Section 4 — Dry Fruits Business: Murlipura Market <span class="toc-num">S4</span></a></li>
+    <li><a href="#s5">Section 5 — Clothing Store: QR + Vistech Integration <span class="toc-num">S5</span></a></li>
+    <li><a href="#s6">Section 6 — Master Plan: Phase-wise Roadmap <span class="toc-num">S6</span></a></li>
+    <li><a href="#s7">Section 7 — Combined Income Projection: 12 Months <span class="toc-num">S7</span></a></li>
+    <li><a href="#s8">Section 8 — Legal, Compliance & Banking <span class="toc-num">S8</span></a></li>
+    <li><a href="#s9">Section 9 — Daily Routine + Mindset Rules <span class="toc-num">S9</span></a></li>
+    <li><a href="#s10">Section 10 — Final Answer: Kya Karna Hai Aur Kyun <span class="toc-num">S10</span></a></li>
+  </ul>
+</div>
+
+<div class="container">
+
+<!-- ================================================================ -->
+<!-- SECTION 0 -->
+<!-- ================================================================ -->
+<div class="section" id="s0">
+  <div class="section-header">
+    <span class="section-num">S0</span>
+    <h2>Tu Sahi Soch Raha Hai — Mindset Analysis</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>0.1 Tera Mindset — Duniya Mein Kahan Aata Hai?</h3>
+      <p class="bold">Tu 24 saal ka hai. B.Tech CS + AI 2025 passout. Company registered. 4-5 clients. QR code idea already demo ready. Blog chal raha hai. Ye sab karte hue tune ek cheez prove kar di — tu executor hai, sirf sochwala nahi.</p>
+      <div class="sp"></div>
+      <p style="font-weight:600; margin-bottom:10px;">Business mindset ke 5 levels hote hain:</p>
+
+      <div class="level-row">
+        <div class="level-num">Level 1</div>
+        <div class="level-desc"><strong>Employee</strong> — Sirf job karta hai, doosron ke liye value banata hai</div>
+        <div class="level-you">Nahi — tu yahan nahi rukna chahta</div>
+      </div>
+      <div class="level-row">
+        <div class="level-num">Level 2</div>
+        <div class="level-desc"><strong>Self-employed</strong> — Khud kaam karta hai, ek hi stream se kamaata hai</div>
+        <div class="level-you">Abhi yahan hai — website clients</div>
+      </div>
+      <div class="level-row active">
+        <div class="level-num">Level 3</div>
+        <div class="level-desc"><strong>Business Owner</strong> — System banata hai jo uske bina chale, team hoti hai</div>
+        <div class="level-you" style="color:var(--gold);">⭐ TERA TARGET — 2026 end tak</div>
+      </div>
+      <div class="level-row">
+        <div class="level-num">Level 4</div>
+        <div class="level-desc"><strong>Investor</strong> — Paisa paisa kamata hai, assets build karta hai</div>
+        <div class="level-you">2028-2030 — cab fleet, property</div>
+      </div>
+      <div class="level-row">
+        <div class="level-num">Level 5</div>
+        <div class="level-desc"><strong>Empire Builder</strong> — Multiple industries, passive income, legacy</div>
+        <div class="level-you">Long term — hospitals, animal seva</div>
+      </div>
+      <div class="sp"></div>
+      <div class="hl">Tera current level: <strong>2.5</strong> — Tu Level 2 se Level 3 ki taraf move kar raha hai. Ye transition SABSE MUSHKIL hoti hai. Isme paisa tight hota hai, log samajh nahi aate, ghar wale pressure dete hain. Ye sab NORMAL hai.</div>
+    </div>
+
+    <div class="sub">
+      <h3>0.2 Kya Tu Comfort Zone Se Bahar Nikal Raha Hai?</h3>
+      <p>Haan — bilkul. Proof:</p>
+      <ul class="blist">
+        <li>College gaya nahi, market mein gaya — seekha</li>
+        <li>Job chhodi, apni company banayi — risk liya</li>
+        <li>Offline marketing ki, gaali bhi khaayi, phir bhi nahi ruka</li>
+        <li>India Mart package liya, seekha ki kya kaam karta hai kya nahi</li>
+        <li>QR code ka original idea banaya — market mein iska equivalent solution aajkal bhi bahut kam hai</li>
+      </ul>
+      <div class="sp"></div>
+      <div class="hl green">Duniya mein 100 log startup sochte hain. 10 start karte hain. 3 ek saal tak survive karte hain. Tu still standing hai. Ye hi comfort zone se bahar nikalna hai.</div>
+    </div>
+
+    <div class="sub">
+      <h3>0.3 Practical Warning — Jo Galti Tune Pehle Ki, Dobaara Mat Karna</h3>
+      <ul class="blist">
+        <li class="red">Doston par trust karna bina agreement ke — clients kha gaye, paise nahi diye</li>
+        <li class="red">Kisi bhi kaam mein written agreement zaroor honi chahiye — ek simple WhatsApp message bhi kaam karta hai legally</li>
+        <li class="red">Ek hi source par depend rehna — India Mart se sirf 4-5 clients 1 saal mein, ye slow hai</li>
+        <li class="red">Gf ke chakkar mein Delhi ka job offer chhoda — emotional decision, business mein sirf numbers bolte hain</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 1 -->
+<!-- ================================================================ -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">S1</span>
+    <h2>QR Code Repeat Customer System — Vistech Software Services</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>1.1 Idea Kya Hai — Practically Samajh</h3>
+      <p>Tu ek QR code deta hai dukaan par. Jab bhi customer scan karta hai, usse:</p>
+      <ul class="blist">
+        <li>Discount milta hai — wo aata hai</li>
+        <li>Offer dikhta hai — wo dosto ko batata hai</li>
+        <li>Points milte hain — wo bar bar aata hai</li>
+      </ul>
+      <div class="sp"></div>
+      <p class="bold">Dukaan wale ka kya faayda? Wo paisa market mein pamphlet, newspaper ad mein lagaata tha — Rs. 5,000 se Rs. 50,000 saal bhar mein. Tera system uss kaam ko sirf Rs. 1,000-2,000 mein kar deta hai. Simple ROI hai iska.</p>
+    </div>
+
+    <div class="sub">
+      <h3>1.2 Market Analysis — Jaipur Numbers</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Segment</th><th>Jaipur Mein Shops</th><th>Conversion Rate</th><th>Potential Clients</th></tr></thead>
+          <tbody>
+            <tr><td>Cafes &amp; Restaurants</td><td>3,000+</td><td>3-5%</td><td>90-150</td></tr>
+            <tr><td>Clothing Stores</td><td>8,000+</td><td>2-3%</td><td>160-240</td></tr>
+            <tr><td>Kirana &amp; Grocery</td><td>15,000+</td><td>1-2%</td><td>150-300</td></tr>
+            <tr><td>Salons &amp; Parlours</td><td>4,000+</td><td>3-4%</td><td>120-160</td></tr>
+            <tr><td>Medical/Pharmacy</td><td>2,500+</td><td>1-2%</td><td>25-50</td></tr>
+            <tr><td><strong>TOTAL — Jaipur alone</strong></td><td><strong>32,500+</strong></td><td><strong>2-3% avg</strong></td><td><strong>545-900 clients</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="hl">Sirf 25 clients = Rs. 50,000/month (at Rs. 2,000 each). Tera target is month ka — ACHIEVABLE hai agar tu daily 5-7 shops visit kare.</div>
+    </div>
+
+    <div class="sub">
+      <h3>1.3 Pricing Strategy</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Plan</th><th>Price/Month</th><th>Features</th><th>Target Customer</th></tr></thead>
+          <tbody>
+            <tr><td>Basic</td><td>Rs. 999/month</td><td>QR Code + Basic offers</td><td>Kirana, small shops</td></tr>
+            <tr><td>Standard</td><td>Rs. 1,999/month</td><td>QR + Offers + Analytics dashboard</td><td>Cafes, clothing</td></tr>
+            <tr><td>Premium</td><td>Rs. 3,499/month</td><td>QR + Offers + Analytics + WhatsApp notify</td><td>Restaurants, chains</td></tr>
+            <tr><td>Annual Basic</td><td>Rs. 8,999/year</td><td>2 months free</td><td>Any shop wanting commitment</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>1.4 Sales Script — Ek Visit Kaise Karna Hai</h3>
+      <ol class="nlist">
+        <li>Subah 9-11 baje — Market mein jaa, shops khulti hain</li>
+        <li>Target: Pehle cafes — owner khud hota hai, decision fast hota hai</li>
+        <li>Opening line: <em>"Bhaiya, aapke customers baar baar aate hain na? Ek system dikhaoon jo automatically unhe wapas laata hai?"</em></li>
+        <li>Phone mein demo dikhao — live QR scan karwao</li>
+        <li>Bolo: "20 din ka free trial, koi commitment nahi. Agar customers nahi aaye toh chhod do."</li>
+        <li>Free trial ke 15 din baad follow up — kitne scans hue, koi customer wapas aaya?</li>
+        <li>Close: "Rs. 999 mein shuru karo, kuch nahi toh chhod dena"</li>
+      </ol>
+    </div>
+
+    <div class="sub">
+      <h3>1.5 Monthly Income Projection — QR Code</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Month</th><th>Clients</th><th>Avg Price</th><th>Revenue</th><th>Expenses</th><th>Net Profit</th></tr></thead>
+          <tbody>
+            <tr><td>June 2026</td><td>5 paid</td><td>Rs. 1,500</td><td>Rs. 7,500</td><td>Rs. 2,000</td><td>Rs. 5,500</td></tr>
+            <tr><td>July 2026</td><td>12 paid</td><td>Rs. 1,500</td><td>Rs. 18,000</td><td>Rs. 3,000</td><td>Rs. 15,000</td></tr>
+            <tr><td>August 2026</td><td>20 paid</td><td>Rs. 1,700</td><td>Rs. 34,000</td><td>Rs. 4,000</td><td>Rs. 30,000</td></tr>
+            <tr><td>September 2026</td><td>30 paid</td><td>Rs. 1,800</td><td>Rs. 54,000</td><td>Rs. 6,000</td><td>Rs. 48,000</td></tr>
+            <tr><td>October 2026</td><td>40 paid</td><td>Rs. 2,000</td><td>Rs. 80,000</td><td>Rs. 8,000</td><td>Rs. 72,000</td></tr>
+            <tr><td>December 2026</td><td>60 paid</td><td>Rs. 2,000</td><td>Rs. 1,20,000</td><td>Rs. 12,000</td><td>Rs. 1,08,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>1.6 Technical Setup — Tools Required</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Tool</th><th>Kaam</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td>Firebase / Supabase</td><td>Database — customer data store karna</td><td>Free tier — Rs. 0</td></tr>
+            <tr><td>QR Code Generator API</td><td>Dynamic QR codes banana</td><td>Rs. 500-1,000/month at scale</td></tr>
+            <tr><td>WhatsApp Business API</td><td>Customer notifications (Premium plan)</td><td>Rs. 500/month</td></tr>
+            <tr><td>Simple Dashboard (React)</td><td>Shop owner ka analytics panel</td><td>One-time build — tera developer karega</td></tr>
+            <tr><td>Razorpay</td><td>Payments lena</td><td>2% per transaction</td></tr>
+            <tr><td><strong>Total Setup Cost</strong></td><td></td><td><strong>Rs. 3,000-5,000 one time</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>1.7 Kahan Se Leads Milenge</h3>
+      <ul class="blist">
+        <li>India Mart: industry = 'loyalty software' ya 'customer retention' — restaurant chains search kar</li>
+        <li>JDA registered shops list: Jaipur Nagar Nigam office se maang — free mein milti hai</li>
+        <li>Facebook Groups: 'Jaipur Business Network', 'Jaipur Entrepreneurs' — post kar, demos de</li>
+        <li>Google My Business: Jaipur mein 4+ star rated cafes — direct call kar</li>
+        <li>Rajasthan Chamber of Commerce: membership le — networking events hote hain</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 2 -->
+<!-- ================================================================ -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">S2</span>
+    <h2>Cab Business — Vishtech Cars</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>2.1 Cab Kyun Karna Chahiye — Practical Reason</h3>
+      <ul class="blist">
+        <li>Fixed monthly income milegi — bills cover honge</li>
+        <li>Driver chalayega — tera time free rahega QR code marketing ke liye</li>
+        <li>Ola/Uber ka algorithm khud kaam laata hai — teri marketing zero</li>
+        <li>Asset build hoga — 4-5 saal mein gaadi teri ho jayegi, EMI khatam</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <h3>2.2 Financial Model — Complete Breakdown</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Details</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Maruti Dzire (2022-23 model)</td><td>Second hand, good condition</td><td>Rs. 4,00,000</td></tr>
+            <tr><td>Down Payment</td><td>Cash available</td><td>Rs. 1,00,000</td></tr>
+            <tr><td>Loan Amount</td><td>3 lakh @ 12% for 3 years</td><td>Rs. 3,00,000</td></tr>
+            <tr><td>EMI</td><td>Monthly EMI</td><td>Rs. 9,963/month</td></tr>
+            <tr><td>Driver Salary</td><td>Fixed + incentive</td><td>Rs. 12,000/month</td></tr>
+            <tr><td>Fuel (net cost)</td><td>Ola/Uber partial cover karta hai</td><td>Rs. 4,000/month</td></tr>
+            <tr><td>Insurance + Maintenance</td><td>Monthly average</td><td>Rs. 2,000/month</td></tr>
+            <tr><td><strong>TOTAL MONTHLY EXPENSE</strong></td><td></td><td><strong>Rs. 27,963/month</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>2.3 Income Projection — Ola/Uber Jaipur</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Scenario</th><th>Daily Trips</th><th>Avg/Trip</th><th>Daily Earning</th><th>Monthly (26 days)</th></tr></thead>
+          <tbody>
+            <tr><td>Slow days</td><td>12</td><td>Rs. 120</td><td>Rs. 1,440</td><td>Rs. 37,440</td></tr>
+            <tr><td>Average days</td><td>16</td><td>Rs. 130</td><td>Rs. 2,080</td><td>Rs. 54,080</td></tr>
+            <tr><td>Peak (weekend/festival)</td><td>20</td><td>Rs. 150</td><td>Rs. 3,000</td><td>Rs. 78,000</td></tr>
+            <tr><td><strong>Conservative monthly avg</strong></td><td></td><td></td><td></td><td><strong>Rs. 45,000-55,000</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="hl green">Net Profit after all expenses: Rs. 17,000-27,000/month from ONE cab. Yahi teri EMI + QR code infrastructure cover karega.</div>
+    </div>
+
+    <div class="sub">
+      <h3>2.4 Women Safety System — Vishtech Cars USP</h3>
+      <ul class="blist">
+        <li>Live location sharing — family ko automatic SMS jab ride start ho</li>
+        <li>SOS button — direct police helpline 112 connect</li>
+        <li>Camera in car — recording stored 24 hours</li>
+        <li>Driver background check certificate — car mein displayed</li>
+      </ul>
+      <div class="hl green">Is system se tu corporate clients bhi pakad sakta hai — companies apne employees ke liye cabs book karti hain jo verified hons.</div>
+    </div>
+
+    <div class="sub">
+      <h3>2.5 Fleet Scaling Plan</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Timeline</th><th>Action</th><th>Investment Needed</th></tr></thead>
+          <tbody>
+            <tr><td>Aug 2026</td><td>1st cab chalu</td><td>Rs. 1L down payment</td></tr>
+            <tr><td>Jan 2027</td><td>QR code profit se 2nd cab add karo</td><td>Rs. 1L (from profits)</td></tr>
+            <tr><td>Jun 2027</td><td>3rd cab — fleet ka concept</td><td>Rs. 1L</td></tr>
+            <tr><td>Dec 2027</td><td>5 cabs running</td><td>Net Rs. 85,000-1,35,000/month</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>2.6 Registration — Kahan Jaana Hai</h3>
+      <ul class="blist">
+        <li>Commercial vehicle registration: RTO Jaipur — Sindhi Camp, SMS Hospital ke paas</li>
+        <li>Ola Partner: ola.com/driver-partner — Aadhar, PAN, DL, RC, Insurance</li>
+        <li>Uber Partner: uber.com/in/en/drive — same documents</li>
+        <li>Taxi permit (yellow plate): Transport Department Rajasthan — Rs. 1,500</li>
+        <li>Driver verification: Police Station — character certificate Rs. 100</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 3 -->
+<!-- ================================================================ -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">S3</span>
+    <h2>Deal Share Mart — Bridge Income Strategy</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>3.1 Job Kyun Karna Chahiye — Mathematical Reason</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Bina Job Ke</th><th>Deal Share Mart Ke Saath (Rs. 15K)</th></tr></thead>
+          <tbody>
+            <tr><td>Ghar wale pressure denge</td><td>Ghar wale relax honge</td></tr>
+            <tr><td>Har mahina khud se expenses manage</td><td>Rs. 15K regular aayegi — cushion milega</td></tr>
+            <tr><td>Cab EMI ka darr rahega</td><td>Cab EMI + driver salary cover ho sakti hai</td></tr>
+            <tr><td>QR code mein panic se decision</td><td>QR code mein patience se kaam hoga</td></tr>
+            <tr><td>3-4 mahine stress mein</td><td>3-4 mahine bridge se cross karoge</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="hl">Ye job permanent nahi hai. Ye 4-6 mahine ka bridge hai jab tak QR code Rs. 25,000/month generate karne lage.</div>
+    </div>
+
+    <div class="sub">
+      <h3>3.2 Konsi Shift Leni Hai</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Shift</th><th>Timing</th><th>Tera Plan</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Morning Shift ✅</strong></td><td>6 AM - 3 PM</td><td>PREFER THIS — 3 baje ke baad market mein jao, QR demos do</td></tr>
+            <tr><td>Evening Shift ❌</td><td>2 PM - 10 PM</td><td>Avoid — prime marketing hours waste honge</td></tr>
+            <tr><td>Night Shift ❌❌</td><td>10 PM onwards</td><td>Never — health aur focus dono kharab honge</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>3.3 Kab Chhodni Hai Job</h3>
+      <ul class="blist">
+        <li class="green">QR code se Rs. 20,000/month consistent 2 mahine ho jaaye — resign</li>
+        <li class="green">Ya cab profit + QR code combined Rs. 35,000 ho jaaye — resign</li>
+        <li class="green">Ya koi bada corporate client mil jaaye — resign</li>
+      </ul>
+      <div class="hl">Resignation rule: 1 mahine notice do, professionally niklo — contacts rahenge.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 4 -->
+<!-- ================================================================ -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">S4</span>
+    <h2>Dry Fruits Business — Murlipura Market</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>4.1 Dry Fruits Kyun — Practical Reasons</h3>
+      <ul class="blist">
+        <li>India mein dry fruits market 2026 mein Rs. 35,000 crore — growing at 12% annually</li>
+        <li>Jaipur — tourist city, wedding capital of India — dry fruits ka demand peak October-March</li>
+        <li>Murlipura mandi mein wholesale rate aur retail ke beech 40-60% margin hai</li>
+        <li>Online bechne par — Amazon, Flipkart, JioMart — margin aur zyada hota hai</li>
+        <li>Gift packaging — Diwali, weddings — premium price milta hai</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <h3>4.2 Financial Model — Setup Cost</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Details</th><th>Cost</th></tr></thead>
+          <tbody>
+            <tr><td>Shop Rent — Murlipura</td><td>10x12 sq ft, monthly</td><td>Rs. 10,000/month</td></tr>
+            <tr><td>Initial Stock</td><td>Kaju, Badam, Pista, Akhrot 50-60 kg mix</td><td>Rs. 55,000</td></tr>
+            <tr><td>Display racks + packaging material</td><td>One time setup</td><td>Rs. 8,000</td></tr>
+            <tr><td>GST registration</td><td>Mandatory for selling</td><td>Rs. 2,000 (CA fees)</td></tr>
+            <tr><td>FSSAI license</td><td>Food business mandatory</td><td>Rs. 2,000/year</td></tr>
+            <tr><td>Amazon/Flipkart seller registration</td><td>Online listing</td><td>Free</td></tr>
+            <tr><td><strong>TOTAL SETUP COST</strong></td><td></td><td><strong>Rs. 77,000</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>4.3 Margin Analysis — Murlipura Wholesale Rates</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Product</th><th>Wholesale/kg</th><th>Retail/kg</th><th>Margin %</th><th>Online/kg</th></tr></thead>
+          <tbody>
+            <tr><td>Kaju (W240 grade)</td><td>Rs. 650</td><td>Rs. 950</td><td>46%</td><td>Rs. 1,100</td></tr>
+            <tr><td>Badam (California)</td><td>Rs. 550</td><td>Rs. 800</td><td>45%</td><td>Rs. 950</td></tr>
+            <tr><td>Pista (salted)</td><td>Rs. 700</td><td>Rs. 1,050</td><td>50%</td><td>Rs. 1,200</td></tr>
+            <tr><td>Akhrot</td><td>Rs. 450</td><td>Rs. 680</td><td>51%</td><td>Rs. 800</td></tr>
+            <tr><td>Anjeer</td><td>Rs. 350</td><td>Rs. 550</td><td>57%</td><td>Rs. 650</td></tr>
+            <tr><td>Mixed gift pack 500g</td><td>Rs. 200 (cost)</td><td>Rs. 450</td><td>125%</td><td>Rs. 550</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>4.4 Monthly Revenue Projection</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Month</th><th>Offline Sales</th><th>Online Sales</th><th>Gift Packs</th><th>Total Revenue</th><th>Net Profit (40%)</th></tr></thead>
+          <tbody>
+            <tr><td>October 2026 (launch)</td><td>Rs. 15,000</td><td>Rs. 5,000</td><td>Rs. 8,000</td><td>Rs. 28,000</td><td>Rs. 11,200</td></tr>
+            <tr><td>November 2026</td><td>Rs. 25,000</td><td>Rs. 15,000</td><td>Rs. 20,000</td><td>Rs. 60,000</td><td>Rs. 24,000</td></tr>
+            <tr><td>December 2026 (Diwali)</td><td>Rs. 40,000</td><td>Rs. 30,000</td><td>Rs. 50,000</td><td>Rs. 1,20,000</td><td>Rs. 48,000</td></tr>
+            <tr><td>January 2027</td><td>Rs. 20,000</td><td>Rs. 20,000</td><td>Rs. 15,000</td><td>Rs. 55,000</td><td>Rs. 22,000</td></tr>
+            <tr><td>February 2027 (wedding season)</td><td>Rs. 30,000</td><td>Rs. 25,000</td><td>Rs. 40,000</td><td>Rs. 95,000</td><td>Rs. 38,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>4.5 Online Strategy — Step by Step</h3>
+      <ol class="nlist">
+        <li>October 1: FSSAI aur GST complete karo — mandatory hai online ke liye</li>
+        <li>Amazon Seller Central mein register karo — business.amazon.in — 2-3 din lagta hai</li>
+        <li>5 products list karo: Kaju 250g, 500g, 1kg — photo achi lena</li>
+        <li>Pricing: Amazon par 15-20% zyada rakho — delivery cover karna hai</li>
+        <li>Instagram page banao: 'Vistech Dry Fruits Jaipur' — daily stories dalo</li>
+        <li>Jaipur ke wedding planners ko WhatsApp karo — gift pack orders mango</li>
+      </ol>
+    </div>
+
+    <div class="sub">
+      <h3>4.6 Licenses Required — Kahan Se Lena</h3>
+      <ul class="blist">
+        <li>FSSAI State License: fssai.gov.in — online apply, Rs. 2,000-5,000, 30 din lagta hai</li>
+        <li>GST @ 0%: Most dry fruits GST exempt — CA se verify karo</li>
+        <li>Weights &amp; Measures: Official stamped scale — Rs. 200-500</li>
+        <li>Trade License: Nagar Nigam Jaipur — ward office mein apply</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 5 -->
+<!-- ================================================================ -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">S5</span>
+    <h2>Clothing Store — QR Code + Vistech Integration</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>5.1 Clothing Store Kyun — Practical Reason</h3>
+      <ul class="blist">
+        <li>Jaipur — Pink City — tourism aur wedding destination — kaptde ki demand saal bhar</li>
+        <li>QR code ka live demo apni dukaan mein de sakta hai — best proof of concept</li>
+        <li>Dono businesses ek doosre ko promote karenge — synergy</li>
+        <li>Wedding season + Diwali = peak income — October se March sone ki season</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <h3>5.2 Business Model Options</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Model</th><th>Investment</th><th>Risk</th><th>Margin</th><th>Recommended?</th></tr></thead>
+          <tbody>
+            <tr><td>Own stock — manufacturing</td><td>Rs. 3-5 lakh</td><td>High</td><td>60-70%</td><td><span class="badge red">Nahi — abhi nahi</span></td></tr>
+            <tr><td>Wholesale se stock — resell</td><td>Rs. 80K-1.2 lakh</td><td>Medium</td><td>40-50%</td><td><span class="badge green">Haan — start yahan se</span></td></tr>
+            <tr><td>Dropshipping — no stock</td><td>Rs. 10-20K</td><td>Low</td><td>15-25%</td><td><span class="badge blue">Online ke liye achha</span></td></tr>
+            <tr><td>Consignment model</td><td>Rs. 5,000 only</td><td>Very Low</td><td>20-30%</td><td><span class="badge green">Haan — offline start</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>5.3 October 2026 Plan — Shuru Kaise Karna Hai</h3>
+      <ul class="blist">
+        <li>Consignment model se shuru karo — Sanganer ya Chomu ke manufacturers se contact karo</li>
+        <li>Small space — 10x12 sqft — Rs. 5,000-8,000 rent — Murlipura ke paas ya Bapu Bazaar area</li>
+        <li>Kurtas, dupattas, ethnic wear — tourist + local dono ke liye</li>
+        <li>Instagram + WhatsApp catalog — free marketing</li>
+        <li>QR code apni dukaan mein lagao — repeat customers aayenge</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <h3>5.4 Monthly Financial Estimate</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Monthly Rent</td><td>Rs. 7,000-10,000</td></tr>
+            <tr><td>Initial Stock (consignment)</td><td>Rs. 0-20,000</td></tr>
+            <tr><td>Utility + misc</td><td>Rs. 2,000</td></tr>
+            <tr><td>Monthly Sales (conservative)</td><td>Rs. 40,000-60,000</td></tr>
+            <tr><td><strong>Net Profit (30-40% margin)</strong></td><td><strong>Rs. 12,000-24,000</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 6 -->
+<!-- ================================================================ -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">S6</span>
+    <h2>Master Plan — Phase-wise Complete Roadmap</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>Phase 1: STABILIZE — June-July 2026</h3>
+      <div class="hl">Goal: Cash flow secure karo, QR code ka proof of concept banao</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Week</th><th>Action Item</th><th>Expected Outcome</th></tr></thead>
+          <tbody>
+            <tr><td>Week 1</td><td>Deal Share Mart join karo — 6AM-3PM shift confirm karo</td><td>Rs. 15,000/month secure</td></tr>
+            <tr><td>Week 1</td><td>QR code free trial ka followup — 20 din baad results check karo</td><td>1-2 conversions possible</td></tr>
+            <tr><td>Week 2</td><td>Daily 5 cafe/restaurant visits — QR code demo do</td><td>2-3 free trials</td></tr>
+            <tr><td>Week 3</td><td>First paying client close karo — minimum Rs. 999</td><td>First real revenue</td></tr>
+            <tr><td>Week 4</td><td>Cab loan process shuru — HDFC ya SBI pre-approval lo</td><td>Loan structure clear</td></tr>
+            <tr><td>Month 2</td><td>5-7 paying QR clients</td><td>Rs. 5,000-10,000/month</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Phase 2: BUILD — August-September 2026</h3>
+      <div class="hl">Goal: Cab chalu karo, QR code 20+ clients tak le jao</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Month</th><th>Action</th><th>Target</th></tr></thead>
+          <tbody>
+            <tr><td>August</td><td>Cab purchase finalize — Dzire second hand</td><td>1 cab running on Ola/Uber</td></tr>
+            <tr><td>August</td><td>QR code marketing — 3 visits daily after job shift</td><td>15 paying clients</td></tr>
+            <tr><td>September</td><td>Part-time sales person hire karo for QR code</td><td>25 clients — Rs. 40,000/month</td></tr>
+            <tr><td>September</td><td>Deal Share Mart resign karo gracefully</td><td>Full time business focus</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Phase 3: EXPAND — October-December 2026</h3>
+      <div class="hl">Goal: Dry fruits + Clothing store launch karo, 2nd cab plan karo</div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Month</th><th>Action</th><th>Investment</th><th>Expected Return</th></tr></thead>
+          <tbody>
+            <tr><td>October</td><td>Dry fruits shop open — Murlipura</td><td>Rs. 73,000</td><td>Rs. 28,000 first month</td></tr>
+            <tr><td>October</td><td>Clothing store — consignment model</td><td>Rs. 10,000-20,000</td><td>Rs. 12,000-20,000</td></tr>
+            <tr><td>November</td><td>Diwali gift packs — dry fruits + clothing combos</td><td>Rs. 10,000 (packaging)</td><td>Rs. 50,000-80,000</td></tr>
+            <tr><td>December</td><td>All 5 businesses running simultaneously</td><td>System set</td><td>Rs. 1,50,000+ combined</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>Phase 4: SCALE — January 2027 Onwards</h3>
+      <ul class="blist">
+        <li>2nd cab add karo QR code profits se</li>
+        <li>QR code — Jaipur se Jodhpur, Udaipur, Kota expand karo</li>
+        <li>Dry fruits — Amazon FBA (Fulfilment by Amazon) shuru karo</li>
+        <li>Clothing — private label banana shuru karo — apna brand</li>
+        <li>Vishtech Software — team hire karo, bigger IT projects lo</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 7 -->
+<!-- ================================================================ -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">S7</span>
+    <h2>Combined Income Projection — 12 Months</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Month</th><th>QR Code</th><th>Cab Business</th><th>Bridge Job</th><th>Dry Fruits</th><th>Clothing</th><th style="color:var(--gold)">TOTAL</th></tr></thead>
+        <tbody>
+          <tr><td>June 2026</td><td>Rs. 5,500</td><td>—</td><td>Rs. 15,000</td><td>—</td><td>—</td><td><strong>Rs. 20,500</strong></td></tr>
+          <tr><td>July 2026</td><td>Rs. 15,000</td><td>—</td><td>Rs. 15,000</td><td>—</td><td>—</td><td><strong>Rs. 30,000</strong></td></tr>
+          <tr><td>August 2026</td><td>Rs. 30,000</td><td>Rs. 17,000</td><td>Rs. 15,000</td><td>—</td><td>—</td><td><strong>Rs. 62,000</strong></td></tr>
+          <tr><td>September 2026</td><td>Rs. 48,000</td><td>Rs. 20,000</td><td>—</td><td>—</td><td>—</td><td><strong>Rs. 68,000</strong></td></tr>
+          <tr><td>October 2026</td><td>Rs. 60,000</td><td>Rs. 22,000</td><td>—</td><td>Rs. 11,200</td><td>Rs. 12,000</td><td><strong>Rs. 1,05,200</strong></td></tr>
+          <tr><td>November 2026</td><td>Rs. 72,000</td><td>Rs. 22,000</td><td>—</td><td>Rs. 24,000</td><td>Rs. 18,000</td><td><strong>Rs. 1,36,000</strong></td></tr>
+          <tr><td>December 2026</td><td>Rs. 90,000</td><td>Rs. 25,000</td><td>—</td><td>Rs. 48,000</td><td>Rs. 24,000</td><td><strong>Rs. 1,87,000</strong></td></tr>
+          <tr><td>January 2027</td><td>Rs. 1,00,000</td><td>Rs. 40,000 (2 cabs)</td><td>—</td><td>Rs. 22,000</td><td>Rs. 18,000</td><td><strong>Rs. 1,80,000</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="hl gold">DECEMBER 2026 TARGET: Rs. 1,87,000/month combined income from all businesses. Ye realistic hai, conservative estimate hai.</div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 8 -->
+<!-- ================================================================ -->
+<div class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">S8</span>
+    <h2>Legal, Compliance &amp; Banking — Complete Checklist</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>8.1 Vistech Software Services — Current Company</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Item</th><th>Status</th><th>Action Needed</th></tr></thead>
+          <tbody>
+            <tr><td>Proprietorship Registration</td><td><span class="badge green">Done</span></td><td>Keep renewing annually</td></tr>
+            <tr><td>GST Registration</td><td><span class="badge gold">Check karo</span></td><td>20L+ revenue expect hai toh mandatory</td></tr>
+            <tr><td>Current Account</td><td><span class="badge red">Open karo</span></td><td>SBI ya HDFC — business name mein</td></tr>
+            <tr><td>Invoices / Receipts</td><td><span class="badge red">Start immediately</span></td><td>Every client ko proper invoice do</td></tr>
+            <tr><td>Written Agreements</td><td><span class="badge red">Start immediately</span></td><td>WhatsApp pe likha bhi valid hai legally</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>8.2 Cab Business — Registration Checklist</h3>
+      <ul class="blist">
+        <li>RC (commercial): RTO Jaipur — Sindhi Camp, SMS Hospital ke paas</li>
+        <li>Commercial vehicle insurance: National Insurance — Rs. 15,000-20,000/year</li>
+        <li>Taxi permit (yellow plate): Transport Department Rajasthan</li>
+        <li>Driver commercial DL: Driver ke paas hona chahiye</li>
+        <li>Ola/Uber partner onboarding: 3-7 days processing</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <h3>8.3 Dry Fruits Business — Compliance</h3>
+      <ul class="blist">
+        <li>FSSAI State License: fssai.gov.in — Aadhar, photo, premises proof — 30 din process</li>
+        <li>GST @ 0%: Most dry fruits GST exempt — CA se verify karo</li>
+        <li>Weights &amp; Measures: Official stamped scale — Rs. 200-500</li>
+        <li>Trade License: Nagar Nigam — ward office mein apply karo</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <h3>8.4 Banking Setup — Important Rules</h3>
+      <ul class="blist">
+        <li>Har business ke liye alag current account — mixing accounts se chaos hoga</li>
+        <li>Vistech Software: SBI Current Account — free NEFT, low charges</li>
+        <li>UPI accept karo sab jagah — Paytm Business, PhonePe Business — free</li>
+        <li>Sabhi receipts — digital folder Google Drive mein — GST audit ready rahega</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 9 -->
+<!-- ================================================================ -->
+<div class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">S9</span>
+    <h2>Daily Routine + Mindset Rules — Empire Builder</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>9.1 Daily Schedule — June-August 2026 (Job + Business)</h3>
+      <div class="schedule">
+        <div class="schedule-row"><div class="schedule-time">5:00 AM – 5:30 AM</div><div class="schedule-act">Wake up — Bholebaba mandir — clarity aati hai, wapas jaana start karo</div></div>
+        <div class="schedule-row"><div class="schedule-time">5:30 AM – 6:00 AM</div><div class="schedule-act">Deal Share Mart ke liye ready</div></div>
+        <div class="schedule-row"><div class="schedule-time">6:00 AM – 3:00 PM</div><div class="schedule-act">Deal Share Mart job — seedha karo, energy waste mat karo wahan</div></div>
+        <div class="schedule-row"><div class="schedule-time">3:00 PM – 3:30 PM</div><div class="schedule-act">Lunch — light rakhna, heavy lunch = slow brain</div></div>
+        <div class="schedule-row"><div class="schedule-time">3:30 PM – 7:00 PM</div><div class="schedule-act">🎯 QR code market visits — 3-4 shops daily minimum</div></div>
+        <div class="schedule-row"><div class="schedule-time">7:00 PM – 8:00 PM</div><div class="schedule-act">Follow ups — WhatsApp, calls</div></div>
+        <div class="schedule-row"><div class="schedule-time">8:00 PM – 9:00 PM</div><div class="schedule-act">Vishtech Cars blog — 1 article daily (SEO)</div></div>
+        <div class="schedule-row"><div class="schedule-time">9:00 PM – 10:00 PM</div><div class="schedule-act">Next day planning — kaunsi shops, kya bolna hai</div></div>
+        <div class="schedule-row"><div class="schedule-time">10:00 PM</div><div class="schedule-act">🛑 Sleep — no negotiation — brain recovery must</div></div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>9.2 Weekly Review — Every Sunday</h3>
+      <ul class="blist">
+        <li>Kitne QR code demos diye — kitne conversions hue</li>
+        <li>Cab status — driver ne kitna kamaya, EMI due date check</li>
+        <li>Expenses vs Income — simple sheet mein likhna</li>
+        <li>Next week ke 25 shops list karo — pre-plan karo</li>
+      </ul>
+    </div>
+
+    <div class="sub">
+      <h3>9.3 Mindset Rules — Jo Bhadhna Hai</h3>
+      <ol class="nlist">
+        <li>Koi agreement ke bina kaam nahi — dost ho ya strangers, written confirmation lena hai</li>
+        <li>Ghar walo ko monthly report do — income, expenses — unka darr trust mein badlega</li>
+        <li>Gf ke baare mein — tu move on kar chuka hai andar se — uski life uski hai, teri life teri. Jab bhi dikhe, smile karo, move on karo. Ye strength hai, weakness nahi.</li>
+        <li>Ek din mein sab kuch nahi hoga — system build karne mein time lagta hai — 6 mahine lagenge, stick karo</li>
+        <li>AI tools use karo — ChatGPT emails ke liye, Canva designs ke liye, Notion planning ke liye — ye tere competitors nahi kar rahe</li>
+      </ol>
+    </div>
+
+    <div class="sub">
+      <h3>9.4 Resources — Free Mein Seekhna</h3>
+      <ul class="blist">
+        <li>YouTube: <strong>Nikhil Kamath</strong> — Indian business mindset</li>
+        <li>YouTube: <strong>Josh Talks Hindi</strong> — real founders ki stories</li>
+        <li>Book: <strong>Rich Dad Poor Dad</strong> — assets vs liabilities concept</li>
+        <li>Book: <strong>Zero to One</strong> — Peter Thiel — startup thinking</li>
+        <li>Podcast: <strong>The Ranveer Show</strong> — Shark Tank India judges</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ================================================================ -->
+<!-- SECTION 10 -->
+<!-- ================================================================ -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">S10</span>
+    <h2>Final Answer — Kya Karna Hai Aur Kyun</h2>
+  </div>
+  <div class="section-body">
+
+    <div class="sub">
+      <h3>10.1 Immediate Actions — Is Hafte</h3>
+      <div class="priority-row">
+        <div class="pnum">1</div>
+        <div class="pdet"><strong>Deal Share Mart join karo — 6AM-3PM shift confirm karo</strong><span>Deadline: This week &nbsp;|&nbsp; Reason: Cash flow + ghar walo ka pressure khatam</span></div>
+      </div>
+      <div class="priority-row">
+        <div class="pnum">2</div>
+        <div class="pdet"><strong>QR code free trial wale shop ka followup karo</strong><span>Deadline: 24 hours &nbsp;|&nbsp; Reason: Proof of concept mile toh conversion easy hoga</span></div>
+      </div>
+      <div class="priority-row">
+        <div class="pnum high">3</div>
+        <div class="pdet"><strong>5 cafes daily visit — QR code demo do</strong><span>Deadline: Daily habit &nbsp;|&nbsp; Reason: Sales pipeline banana hai</span></div>
+      </div>
+      <div class="priority-row">
+        <div class="pnum high">4</div>
+        <div class="pdet"><strong>Cab loan pre-approval lena — HDFC/SBI</strong><span>Deadline: 2 weeks &nbsp;|&nbsp; Reason: August mein ready rehna hai</span></div>
+      </div>
+      <div class="priority-row">
+        <div class="pnum med">5</div>
+        <div class="pdet"><strong>FSSAI + GST apply karo dry fruits ke liye</strong><span>Deadline: 1 month &nbsp;|&nbsp; Reason: October launch ke liye 30 din process time</span></div>
+      </div>
+      <div class="priority-row">
+        <div class="pnum low">6</div>
+        <div class="pdet"><strong>Clothing store consignment contacts dhundho</strong><span>Deadline: 6-8 weeks &nbsp;|&nbsp; Reason: October mein open karna hai</span></div>
+      </div>
+    </div>
+
+    <div class="sub">
+      <h3>10.2 Final Numbers — Teri Empire by December 2026</h3>
+      <div class="income-grid">
+        <div class="income-card">
+          <div class="label">QR Code SaaS</div>
+          <div class="amount">Rs. 90,000</div>
+          <div class="asset">Recurring client base</div>
+        </div>
+        <div class="income-card">
+          <div class="label">Cab Business</div>
+          <div class="amount">Rs. 25,000</div>
+          <div class="asset">Physical asset — Dzire</div>
+        </div>
+        <div class="income-card">
+          <div class="label">Dry Fruits</div>
+          <div class="amount">Rs. 48,000</div>
+          <div class="asset">Brand + Amazon store</div>
+        </div>
+        <div class="income-card">
+          <div class="label">Clothing Store</div>
+          <div class="amount">Rs. 24,000</div>
+          <div class="asset">Customer base + brand</div>
+        </div>
+        <div class="income-card total">
+          <div class="label">TOTAL / MONTH</div>
+          <div class="amount">Rs. 1,87,000</div>
+          <div class="asset">4 businesses + 4 assets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sp2"></div>
+    <div style="text-align:center; padding: 40px 20px; background: var(--navy); border-radius: 10px;">
+      <div style="font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:var(--gold); letter-spacing:0.3em; text-transform:uppercase; margin-bottom:16px;">Remember This</div>
+      <div style="font-family:'Playfair Display',serif; font-size:1.5rem; color:white; margin-bottom:12px;">Tu 24 saal ka hai.</div>
+      <div style="font-size:1rem; color:rgba(255,255,255,0.75); margin-bottom:16px;">Rs. 1.87 lakh/month ka system banane ki planning kar raha hai.</div>
+      <div style="font-size:1.1rem; color:var(--gold); font-weight:700; margin-bottom:12px;">Teri age mein 95% log sirf soch rahe hote hain. Tu execute kar raha hai.</div>
+      <div style="font-size:0.9rem; color:rgba(255,255,255,0.55);">Ye sirf shuruat hai. Hospitals, animal seva, real estate — sab aayega.</div>
+    </div>
+
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <strong>VISTECH EMPIRE — Built by one focused founder.</strong>
+  Vistech Software Services &nbsp;|&nbsp; May 2026 &nbsp;|&nbsp; Jaipur, Rajasthan
+</div>
+
+</body>
+</html>
