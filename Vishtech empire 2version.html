@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vistech Empire — Master Business Plan v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0f14;
+  --surface: #141720;
+  --surface2: #1c2030;
+  --border: #2a2f45;
+  --gold: #f0a500;
+  --gold2: #ffc233;
+  --teal: #00c9a7;
+  --blue: #4a8fff;
+  --red: #ff4d4d;
+  --green: #2ecc71;
+  --orange: #ff7043;
+  --purple: #9b59b6;
+  --text: #e8eaf0;
+  --text2: #9ba3c0;
+  --new: #00c9a7;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+/* HEADER */
+.site-header {
+  background: linear-gradient(135deg, #0d0f14 0%, #141c2e 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 1.5rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(240,165,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+  text-shadow: 0 0 40px rgba(240,165,0,0.4);
+}
+.logo span { color: var(--text); }
+.tagline {
+  font-size: 0.85rem;
+  color: var(--text2);
+  letter-spacing: 0.08em;
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.badge {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.78rem;
+  color: var(--text2);
+}
+.badge.new-badge {
+  border-color: var(--teal);
+  color: var(--teal);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 0.5rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  font-family: 'Noto Sans', sans-serif;
+  transition: background 0.2s;
+}
+.print-btn:hover { background: rgba(240,165,0,0.08); }
+
+/* TOC */
+.toc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 860px;
+}
+.toc-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.4rem;
+}
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text2);
+  font-size: 0.82rem;
+  transition: all 0.15s;
+  border: 1px solid transparent;
+}
+.toc-item:hover { color: var(--text); background: var(--surface2); border-color: var(--border); }
+.toc-item.new { color: var(--teal); border-color: rgba(0,201,167,0.2); background: rgba(0,201,167,0.05); }
+.toc-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.75rem;
+  color: var(--gold);
+  min-width: 22px;
+  font-weight: 600;
+}
+
+/* WRAPPER */
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1rem 4rem;
+}
+
+/* SECTION */
+.section {
+  margin-top: 2.5rem;
+  scroll-margin-top: 1rem;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-icon {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.section-title-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+.section-sub {
+  font-size: 0.75rem;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.new-tag {
+  background: rgba(0,201,167,0.15);
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  font-size: 0.68rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* CARD */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.2rem 1.4rem;
+  margin-bottom: 1rem;
+}
+.card.highlight { border-color: var(--gold); background: rgba(240,165,0,0.04); }
+.card.teal-card { border-color: var(--teal); background: rgba(0,201,167,0.04); }
+.card.warn { border-color: var(--orange); background: rgba(255,112,67,0.05); }
+.card-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.card-title.teal { color: var(--teal); }
+.card-title.blue { color: var(--blue); }
+
+/* TABLE */
+.t-wrap { overflow-x: auto; margin: 0.8rem 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+th {
+  background: var(--surface2);
+  color: var(--gold);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+td {
+  padding: 0.55rem 0.8rem;
+  border-bottom: 1px solid rgba(42,47,69,0.5);
+  color: var(--text);
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tr.total-row td { color: var(--gold2); font-weight: 600; background: rgba(240,165,0,0.06); }
+tr.highlight-row td { color: var(--teal); font-weight: 600; background: rgba(0,201,167,0.05); }
+tr.warn-row td { color: var(--orange); }
+td.green { color: var(--green); font-weight: 600; }
+td.red { color: var(--red); }
+td.gold { color: var(--gold2); font-weight: 600; }
+td.teal { color: var(--teal); }
+
+/* STEP LIST */
+.steps { list-style: none; counter-reset: steps; }
+.steps li {
+  counter-increment: steps;
+  padding: 0.5rem 0 0.5rem 2.2rem;
+  position: relative;
+  color: var(--text);
+  font-size: 0.88rem;
+  border-bottom: 1px solid rgba(42,47,69,0.4);
+}
+.steps li:last-child { border-bottom: none; }
+.steps li::before {
+  content: counter(steps);
+  position: absolute; left: 0;
+  width: 1.5rem; height: 1.5rem;
+  background: var(--surface2);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  top: 0.55rem;
+}
+
+/* BULLET LIST */
+.blist { list-style: none; padding: 0; }
+.blist li {
+  padding: 0.35rem 0 0.35rem 1.5rem;
+  position: relative;
+  font-size: 0.88rem;
+  color: var(--text);
+}
+.blist li::before {
+  content: '▸';
+  position: absolute; left: 0;
+  color: var(--gold);
+  font-size: 0.75rem;
+  top: 0.4rem;
+}
+
+/* MINDSET LEVELS */
+.levels { display: flex; flex-direction: column; gap: 0.5rem; }
+.level-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+.level-row.active { border-color: var(--gold); background: rgba(240,165,0,0.07); }
+.level-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text2);
+  min-width: 28px;
+}
+.level-row.active .level-num { color: var(--gold); }
+.level-name { font-weight: 600; font-size: 0.9rem; }
+.level-desc { font-size: 0.78rem; color: var(--text2); }
+.level-tag {
+  margin-left: auto;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.level-tag.current { background: rgba(240,165,0,0.15); color: var(--gold); border: 1px solid var(--gold); }
+.level-tag.target { background: rgba(0,201,167,0.1); color: var(--teal); border: 1px solid var(--teal); }
+
+/* PHASE ROADMAP */
+.phase-block {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.phase-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+.phase-icon {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.phase-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+.phase-period { font-size: 0.75rem; color: var(--text2); }
+.phase-body { background: var(--surface); }
+
+/* INCOME HIGHLIGHT */
+.income-hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.income-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+.income-card.gold-card { border-color: var(--gold); }
+.income-card.teal-card-sm { border-color: var(--teal); }
+.income-label { font-size: 0.72rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+.income-amount { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--gold2); }
+.income-card.teal-card-sm .income-amount { color: var(--teal); }
+
+/* TIMELINE */
+.timeline { position: relative; padding-left: 2rem; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.45rem;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 1.2rem;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -1.7rem;
+  top: 0.3rem;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--bg);
+}
+.tl-item.new-item::before { background: var(--teal); }
+.tl-date {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.78rem;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+.tl-item.new-item .tl-date { color: var(--teal); }
+.tl-content { font-size: 0.87rem; color: var(--text); }
+.tl-amount { font-weight: 600; color: var(--gold2); }
+
+/* ROUTINE */
+.routine { display: flex; flex-direction: column; gap: 0.4rem; }
+.routine-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  background: var(--surface2);
+  border-left: 3px solid var(--border);
+}
+.routine-row.key { border-left-color: var(--gold); }
+.routine-row.biz { border-left-color: var(--teal); }
+.routine-time {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.82rem;
+  color: var(--gold);
+  min-width: 90px;
+  font-weight: 600;
+}
+.routine-row.biz .routine-time { color: var(--teal); }
+.routine-text { font-size: 0.85rem; color: var(--text); }
+
+/* ACTION ITEMS */
+.action-list { display: flex; flex-direction: column; gap: 0.5rem; }
+.action-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+.action-num {
+  width: 26px; height: 26px;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.action-num.teal { background: var(--teal); }
+.action-title { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+.action-meta { font-size: 0.75rem; color: var(--text2); margin-top: 0.15rem; }
+
+/* FINAL BOX */
+.empire-final {
+  background: linear-gradient(135deg, rgba(240,165,0,0.08) 0%, rgba(0,201,167,0.05) 100%);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+.empire-total {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(2rem, 7vw, 3rem);
+  font-weight: 700;
+  color: var(--gold);
+  text-shadow: 0 0 30px rgba(240,165,0,0.4);
+  margin: 0.5rem 0;
+}
+.empire-sub { font-size: 0.85rem; color: var(--text2); }
+.empire-quote {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text);
+  font-style: italic;
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* PLOT/GODOWN SPECIAL */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.8rem;
+  margin: 1rem 0;
+}
+.prop-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+.prop-card.active { border-color: var(--teal); background: rgba(0,201,167,0.06); }
+.prop-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.prop-title { font-family: 'Rajdhani', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--text); text-transform: uppercase; letter-spacing: 0.05em; }
+.prop-value { font-size: 0.8rem; color: var(--text2); margin-top: 0.2rem; }
+.prop-value.highlight { color: var(--gold2); font-weight: 600; }
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--text2);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+/* PRINT */
+@media print {
+  body { background: #fff; color: #000; }
+  .site-header { background: #fff; }
+  .logo { color: #c47a00; }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .site-header { padding: 1.5rem 1rem 1rem; }
+  .toc-grid { grid-template-columns: 1fr; }
+  .income-hero { grid-template-columns: repeat(2, 1fr); }
+  .property-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">⚡ VISTECH <span>EMPIRE</span></div>
+  <div class="tagline">Master Business Plan — Version 2.0 | May 2026</div>
+  <div class="badges">
+    <span class="badge">📱 QR Code SaaS</span>
+    <span class="badge">🚗 Cab Business</span>
+    <span class="badge">💼 Bridge Income</span>
+    <span class="badge">🥜 Dry Fruits</span>
+    <span class="badge">👗 Clothing Store</span>
+    <span class="badge new-badge">🏗️ Plot + Loha Mandi + Godown ✦ NEW</span>
+  </div>
+  <div style="font-size:0.8rem;color:var(--text2);margin-top:0.6rem;">Vistech Software Services | Founder: 24 yrs | B.Tech CS + AI 2025 | Jaipur, Rajasthan</div>
+  <button class="print-btn" onclick="window.print()">🖨 Print / Save PDF</button>
+
+   <button class="print-btn" onclick="window.location.href='https://vishtech-empire.vercel.app/'" style="margin-top:0;border-color:var(--teal);color:var(--teal)">⬅ V1 — Purana Plan</button>
+</header>
+
+<div class="wrap">
+
+<!-- TOC -->
+<nav class="toc">
+  <div class="toc-title">📋 Table of Contents</div>
+  <div class="toc-grid">
+    <a href="#s0" class="toc-item"><span class="toc-num">S0</span>Mindset Analysis</a>
+    <a href="#s1" class="toc-item"><span class="toc-num">S1</span>QR Code System</a>
+    <a href="#s2" class="toc-item"><span class="toc-num">S2</span>Cab Business</a>
+    <a href="#s3" class="toc-item"><span class="toc-num">S3</span>Bridge Income</a>
+    <a href="#s4" class="toc-item"><span class="toc-num">S4</span>Dry Fruits</a>
+    <a href="#s5" class="toc-item"><span class="toc-num">S5</span>Clothing Store</a>
+    <a href="#s6" class="toc-item"><span class="toc-num">S6</span>Master Plan</a>
+    <a href="#s7" class="toc-item"><span class="toc-num">S7</span>Income Projection</a>
+    <a href="#s8" class="toc-item"><span class="toc-num">S8</span>Legal & Banking</a>
+    <a href="#s9" class="toc-item"><span class="toc-num">S9</span>Daily Routine</a>
+    <a href="#s10" class="toc-item"><span class="toc-num">S10</span>Final Actions</a>
+    <a href="#s11" class="toc-item new"><span class="toc-num">S11</span>🏗️ Plot + Loha Mandi + Godown ✦ NEW</a>
+    <a href="#s12" class="toc-item new"><span class="toc-num">S12</span>🏛️ 2027 Asset Empire ✦ NEW</a>
+  </div>
+</nav>
+
+<!-- S0 MINDSET -->
+<section class="section" id="s0">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(240,165,0,0.12)">🧠</div>
+    <div>
+      <div class="section-title-text">Tu Sahi Soch Raha Hai — Mindset Analysis</div>
+      <div class="section-sub">Section 0 — Foundation</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">0.1 Tera Mindset Level — Duniya Mein Kahan Hai?</div>
+    <p style="font-size:0.85rem;color:var(--text2);margin-bottom:1rem;">Tu 24 saal ka hai. B.Tech CS + AI 2025 passout. Company registered. QR code demo ready. Blog chal raha hai. Tu executor hai — sirf sochwala nahi.</p>
+    <div class="levels">
+      <div class="level-row">
+        <div class="level-num">1</div>
+        <div><div class="level-name">Employee</div><div class="level-desc">Sirf job karta hai</div></div>
+        <div class="level-tag" style="color:var(--text2);font-size:0.7rem">Yahan nahi rukna</div>
+      </div>
+      <div class="level-row active">
+        <div class="level-num">2.5</div>
+        <div><div class="level-name">Self-Employed → Business Owner</div><div class="level-desc">Multiple businesses build kar raha hai</div></div>
+        <div class="level-tag current">ABHI YAHAN ⭐</div>
+      </div>
+      <div class="level-row">
+        <div class="level-num">3</div>
+        <div><div class="level-name">Business Owner</div><div class="level-desc">System banata hai jo khud chale</div></div>
+        <div class="level-tag target">TARGET 2026</div>
+      </div>
+      <div class="level-row">
+        <div class="level-num">4</div>
+        <div><div class="level-name">Investor</div><div class="level-desc">Paisa paisa kamata hai — cab fleet, plot, property</div></div>
+        <div class="level-tag" style="color:var(--text2);font-size:0.7rem">2027-2028</div>
+      </div>
+      <div class="level-row">
+        <div class="level-num">5</div>
+        <div><div class="level-name">Empire Builder</div><div class="level-desc">Multiple industries, passive income, legacy</div></div>
+        <div class="level-tag" style="color:var(--text2);font-size:0.7rem">Long term</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card warn">
+    <div class="card-title" style="color:var(--orange)">0.3 Practical Warning — Galtiyan Mat Dohraa</div>
+    <ul class="blist">
+      <li>Doston par trust karna bina agreement ke — hamesha written confirmation lo</li>
+      <li>Ek hi source par depend rehna — multiple income streams zaroori hain</li>
+      <li>Emotional decisions — business mein sirf numbers bolte hain</li>
+      <li>Sab ek saath start karna — sequence follow karo, ek ek karke</li>
+    </ul>
+  </div>
+</section>
+
+<!-- S1 QR CODE -->
+<section class="section" id="s1">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(74,143,255,0.12)">📱</div>
+    <div>
+      <div class="section-title-text">QR Code Repeat Customer System</div>
+      <div class="section-sub">Section 1 — Vistech Software Services | MAIN BUSINESS</div>
+    </div>
+  </div>
+
+  <div class="card highlight">
+    <div class="card-title">1.1 Idea Kya Hai</div>
+    <p style="font-size:0.87rem">Tu ek QR code deta hai dukaan par. Customer scan kare → discount mile → offer dikhe → points mile → wapas aaye. Dukaan wale ka Rs. 5,000-50,000/saal ka pamphlet kharcha sirf Rs. 1,000-2,000 mein ho jaata hai.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">1.2 Market — Jaipur Numbers</div>
+    <div class="t-wrap"><table>
+      <tr><th>Segment</th><th>Shops</th><th>Conversion</th><th>Potential</th></tr>
+      <tr><td>Cafes & Restaurants</td><td>3,000+</td><td>3-5%</td><td>90-150</td></tr>
+      <tr><td>Clothing Stores</td><td>8,000+</td><td>2-3%</td><td>160-240</td></tr>
+      <tr><td>Kirana & Grocery</td><td>15,000+</td><td>1-2%</td><td>150-300</td></tr>
+      <tr><td>Salons & Parlours</td><td>4,000+</td><td>3-4%</td><td>120-160</td></tr>
+      <tr class="total-row"><td><strong>TOTAL Jaipur</strong></td><td>32,500+</td><td>2-3% avg</td><td><strong>545-900 clients</strong></td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">1.3 Pricing Strategy</div>
+    <div class="t-wrap"><table>
+      <tr><th>Plan</th><th>Price/Month</th><th>Features</th><th>Target</th></tr>
+      <tr><td>Basic</td><td>Rs. 999</td><td>QR + Basic offers</td><td>Kirana, small shops</td></tr>
+      <tr><td>Standard</td><td>Rs. 1,999</td><td>QR + Analytics dashboard</td><td>Cafes, clothing</td></tr>
+      <tr><td>Premium</td><td>Rs. 3,499</td><td>QR + Analytics + WhatsApp</td><td>Restaurants, chains</td></tr>
+      <tr class="highlight-row"><td>Annual Basic</td><td>Rs. 8,999/year</td><td>2 months free</td><td>Any shop</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">1.5 Monthly Income Projection</div>
+    <div class="t-wrap"><table>
+      <tr><th>Month</th><th>Clients</th><th>Avg Price</th><th>Revenue</th><th>Net Profit</th></tr>
+      <tr><td>June 2026</td><td>5</td><td>Rs. 1,500</td><td>Rs. 7,500</td><td class="green">Rs. 5,500</td></tr>
+      <tr><td>July 2026</td><td>12</td><td>Rs. 1,500</td><td>Rs. 18,000</td><td class="green">Rs. 15,000</td></tr>
+      <tr><td>August 2026</td><td>20</td><td>Rs. 1,700</td><td>Rs. 34,000</td><td class="green">Rs. 30,000</td></tr>
+      <tr><td>September 2026</td><td>30</td><td>Rs. 1,800</td><td>Rs. 54,000</td><td class="green">Rs. 48,000</td></tr>
+      <tr><td>October 2026</td><td>40</td><td>Rs. 2,000</td><td>Rs. 80,000</td><td class="green">Rs. 72,000</td></tr>
+      <tr class="total-row"><td>December 2026</td><td>60</td><td>Rs. 2,000</td><td>Rs. 1,20,000</td><td class="gold">Rs. 1,08,000</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- S2 CAB -->
+<section class="section" id="s2">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(255,112,67,0.12)">🚗</div>
+    <div>
+      <div class="section-title-text">Cab Business — Vishtech Cars</div>
+      <div class="section-sub">Section 2 — Physical Asset + Monthly Income</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2.2 Financial Model</div>
+    <div class="t-wrap"><table>
+      <tr><th>Item</th><th>Details</th><th>Amount</th></tr>
+      <tr><td>Maruti Dzire (2022-23)</td><td>Second hand, good condition</td><td>Rs. 4,00,000</td></tr>
+      <tr><td>Down Payment</td><td>Cash available</td><td>Rs. 1,00,000</td></tr>
+      <tr><td>Loan</td><td>3L @ 12% for 3 years</td><td>Rs. 3,00,000</td></tr>
+      <tr><td>EMI</td><td>Monthly</td><td>Rs. 9,963</td></tr>
+      <tr><td>Driver Salary</td><td>Dost — fixed + incentive</td><td>Rs. 12,000</td></tr>
+      <tr><td>Fuel + Insurance</td><td>Monthly avg</td><td>Rs. 6,000</td></tr>
+      <tr class="warn-row"><td><strong>Total Expense</strong></td><td></td><td><strong>Rs. 27,963/month</strong></td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2.3 Income Projection — Ola/Uber Jaipur</div>
+    <div class="t-wrap"><table>
+      <tr><th>Scenario</th><th>Daily Trips</th><th>Daily Earning</th><th>Monthly (26d)</th><th>Net Profit</th></tr>
+      <tr><td>Slow</td><td>12</td><td>Rs. 1,440</td><td>Rs. 37,440</td><td class="green">Rs. 9,477</td></tr>
+      <tr><td>Average</td><td>16</td><td>Rs. 2,080</td><td>Rs. 54,080</td><td class="green">Rs. 26,117</td></tr>
+      <tr class="highlight-row"><td>Peak</td><td>20</td><td>Rs. 3,000</td><td>Rs. 78,000</td><td class="gold">Rs. 50,037</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2.5 Fleet Scaling Plan</div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">August 2026</div>
+        <div class="tl-content">1st cab chalu — Rs. 1L down payment → Net <span class="tl-amount">Rs. 17-27k/month</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">January 2027</div>
+        <div class="tl-content">2nd cab — QR code profits se → Net <span class="tl-amount">Rs. 34-54k/month</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">June 2027</div>
+        <div class="tl-content">3rd cab fleet concept → <span class="tl-amount">Rs. 51-81k/month</span></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">December 2027</div>
+        <div class="tl-content">5 cabs running → Net <span class="tl-amount">Rs. 85k-1.35L/month</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3 BRIDGE JOB -->
+<section class="section" id="s3">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(155,89,182,0.12)">💼</div>
+    <div>
+      <div class="section-title-text">Deal Share Mart — Bridge Income Strategy</div>
+      <div class="section-sub">Section 3 — 4-6 Month Cash Flow Bridge</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">3.2 Best Shift — Morning 6AM-3PM ✅</div>
+    <ul class="blist">
+      <li>3 baje ke baad poora time tera — QR code market visits</li>
+      <li>Evening Shift (2PM-10PM) ❌ — prime marketing hours waste</li>
+      <li>Night Shift ❌❌ — health + focus dono kharab</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">3.3 Kab Chhodni Hai — Exit Rules</div>
+    <ul class="blist">
+      <li>QR code se Rs. 20,000/month consistent 2 mahine → resign</li>
+      <li>Cab + QR combined Rs. 35,000/month → resign</li>
+      <li>Koi bada corporate client → resign</li>
+    </ul>
+  </div>
+</section>
+
+<!-- S4 DRY FRUITS -->
+<section class="section" id="s4">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(240,165,0,0.12)">🥜</div>
+    <div>
+      <div class="section-title-text">Dry Fruits Business — Murlipura Market</div>
+      <div class="section-sub">Section 4 — October 2026 Launch</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">4.2 Setup Cost</div>
+    <div class="t-wrap"><table>
+      <tr><th>Item</th><th>Details</th><th>Cost</th></tr>
+      <tr><td>Shop Rent — Murlipura</td><td>10×12 sq ft</td><td>Rs. 10,000/month</td></tr>
+      <tr><td>Initial Stock</td><td>Kaju, Badam, Pista, Akhrot 50-60 kg</td><td>Rs. 55,000</td></tr>
+      <tr><td>Display racks + packaging</td><td>One time</td><td>Rs. 8,000</td></tr>
+      <tr><td>GST + FSSAI</td><td>Mandatory</td><td>Rs. 4,000</td></tr>
+      <tr class="total-row"><td><strong>Total Setup</strong></td><td></td><td><strong>Rs. 77,000</strong></td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">4.4 Monthly Revenue Projection</div>
+    <div class="t-wrap"><table>
+      <tr><th>Month</th><th>Total Revenue</th><th>Net Profit (40%)</th></tr>
+      <tr><td>October (launch)</td><td>Rs. 28,000</td><td class="green">Rs. 11,200</td></tr>
+      <tr><td>November</td><td>Rs. 60,000</td><td class="green">Rs. 24,000</td></tr>
+      <tr class="total-row"><td>December (Diwali)</td><td>Rs. 1,20,000</td><td class="gold">Rs. 48,000</td></tr>
+      <tr><td>February (Wedding)</td><td>Rs. 95,000</td><td class="green">Rs. 38,000</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- S5 CLOTHING -->
+<section class="section" id="s5">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(231,76,60,0.12)">👗</div>
+    <div>
+      <div class="section-title-text">Clothing Store — QR + Vistech Integration</div>
+      <div class="section-sub">Section 5 — October 2026 Launch</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">5.4 Monthly Financial Estimate</div>
+    <div class="t-wrap"><table>
+      <tr><th>Item</th><th>Amount</th></tr>
+      <tr><td>Monthly Rent</td><td>Rs. 7,000-10,000</td></tr>
+      <tr><td>Initial Stock (consignment)</td><td>Rs. 0-20,000</td></tr>
+      <tr><td>Monthly Sales (conservative)</td><td>Rs. 40,000-60,000</td></tr>
+      <tr class="total-row"><td><strong>Net Profit (30-40%)</strong></td><td><strong>Rs. 12,000-24,000</strong></td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- S6 MASTER PLAN -->
+<section class="section" id="s6">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(0,201,167,0.12)">🗺️</div>
+    <div>
+      <div class="section-title-text">Master Plan — Phase-wise Roadmap</div>
+      <div class="section-sub">Section 6 — Updated with Plot + Loha Mandi + Godown</div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header">
+      <div class="phase-icon" style="background:rgba(74,143,255,0.15)">🔵</div>
+      <div>
+        <div class="phase-title">Phase 1: STABILIZE — June-July 2026</div>
+        <div class="phase-period">Goal: Cash flow secure karo, QR ka proof of concept banao</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="t-wrap"><table>
+        <tr><th>Week</th><th>Action</th><th>Outcome</th></tr>
+        <tr><td>Week 1</td><td>Deal Share Mart join — 6AM-3PM shift</td><td class="green">Rs. 15,000/month secure</td></tr>
+        <tr><td>Week 1</td><td>QR code free trial followup</td><td>1-2 conversions</td></tr>
+        <tr><td>Week 2</td><td>Daily 5 cafe visits — QR demo</td><td>2-3 free trials</td></tr>
+        <tr><td>Week 3</td><td>First paying client close</td><td class="green">First real revenue</td></tr>
+        <tr><td>Week 4</td><td>Cab loan pre-approval — HDFC/SBI</td><td>Loan structure clear</td></tr>
+        <tr class="highlight-row"><td>Month 2</td><td>5-7 paying QR clients</td><td>Rs. 5,000-10,000/month</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header">
+      <div class="phase-icon" style="background:rgba(240,165,0,0.15)">🟡</div>
+      <div>
+        <div class="phase-title">Phase 2: BUILD — August-September 2026</div>
+        <div class="phase-period">Goal: Cab chalu karo, QR 20+ clients</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="t-wrap"><table>
+        <tr><th>Month</th><th>Action</th><th>Target</th></tr>
+        <tr><td>August</td><td>Cab purchase — Dzire second hand</td><td class="green">1 cab on Ola/Uber</td></tr>
+        <tr><td>August</td><td>QR marketing — 3 visits daily after job</td><td>15 paying clients</td></tr>
+        <tr><td>September</td><td>Part-time sales person hire for QR</td><td class="green">25 clients — Rs. 40k/month</td></tr>
+        <tr class="highlight-row"><td>September</td><td>Deal Share Mart resign gracefully</td><td>Full time business</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header">
+      <div class="phase-icon" style="background:rgba(0,201,167,0.15)">🟢</div>
+      <div>
+        <div class="phase-title">Phase 3: EXPAND — October-December 2026</div>
+        <div class="phase-period">Goal: Dry fruits + Clothing launch, 2nd cab plan</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="t-wrap"><table>
+        <tr><th>Month</th><th>Action</th><th>Investment</th><th>Return</th></tr>
+        <tr><td>October</td><td>Dry fruits shop — Murlipura</td><td>Rs. 73,000</td><td class="green">Rs. 28,000</td></tr>
+        <tr><td>October</td><td>Clothing store — consignment</td><td>Rs. 10-20,000</td><td class="green">Rs. 12-20,000</td></tr>
+        <tr><td>November</td><td>Diwali gift packs combo</td><td>Rs. 10,000</td><td class="green">Rs. 50-80,000</td></tr>
+        <tr class="total-row"><td>December</td><td>All 5 businesses running</td><td>System set</td><td>Rs. 1,50,000+</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="phase-block" style="border-color:var(--teal)">
+    <div class="phase-header" style="background:rgba(0,201,167,0.08)">
+      <div class="phase-icon" style="background:rgba(0,201,167,0.2)">🏗️</div>
+      <div>
+        <div class="phase-title" style="color:var(--teal)">Phase 4: ASSETS — January-June 2027 ✦ NEW</div>
+        <div class="phase-period">Goal: Plot lo, Loha Mandi setup karo, Godown rental income shuru karo</div>
+      </div>
+      <span class="new-tag" style="margin-left:auto">NEW</span>
+    </div>
+    <div class="phase-body">
+      <div class="t-wrap"><table>
+        <tr><th>Month</th><th>Action</th><th>Investment</th><th>Return</th></tr>
+        <tr class="highlight-row"><td>Jan 2027</td><td>50 gaj plot — New Loha Mandi, Sikar Road</td><td>Rs. 1.5-2L down</td><td>Asset build</td></tr>
+        <tr><td>Feb 2027</td><td>Plot loan process — SBI/HDFC</td><td>Rs. 4-8L loan</td><td>EMI Rs. 4-8k/month</td></tr>
+        <tr><td>March 2027</td><td>Godam construction/shed — basic</td><td>Rs. 1.5-2L</td><td>Ready for rental</td></tr>
+        <tr><td>April 2027</td><td>Loha Mandi trader ko godam rent pe do</td><td>Already built</td><td class="green">Rs. 8-15k/month passive</td></tr>
+        <tr><td>May 2027</td><td>2nd cab add karo QR profits se</td><td>Rs. 1L</td><td class="green">+Rs. 17-27k/month</td></tr>
+        <tr class="total-row"><td>June 2027</td><td>3 income streams stable</td><td></td><td>Rs. 2.5L+/month</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="phase-block">
+    <div class="phase-header">
+      <div class="phase-icon" style="background:rgba(240,165,0,0.15)">🚀</div>
+      <div>
+        <div class="phase-title">Phase 5: SCALE — July 2027 Onwards</div>
+        <div class="phase-period">Goal: Empire mode</div>
+      </div>
+    </div>
+    <div class="phase-body" style="padding:1rem 1.2rem">
+      <ul class="blist">
+        <li>2nd godam build karo same plot pe ya adjacent plot lo</li>
+        <li>QR code — Jaipur se Jodhpur, Udaipur, Kota expand karo</li>
+        <li>Dry fruits — Amazon FBA shuru karo</li>
+        <li>Clothing — private label banana shuru karo — apna brand</li>
+        <li>Cab fleet — 5 cabs target</li>
+        <li>Loha Mandi ke andar trading desk set karo — iron/steel wholesale margin</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- S7 INCOME PROJECTION -->
+<section class="section" id="s7">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(46,204,113,0.12)">📊</div>
+    <div>
+      <div class="section-title-text">Combined Income Projection — 2026-2027</div>
+      <div class="section-sub">Section 7 — Updated with Property + Loha Mandi Income</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2026 — Building Phase</div>
+    <div class="t-wrap"><table>
+      <tr><th>Month</th><th>QR Code</th><th>Cab</th><th>Job</th><th>Dry Fruits</th><th>Clothing</th><th class="gold">TOTAL</th></tr>
+      <tr><td>June</td><td>Rs. 5,500</td><td>—</td><td>Rs. 15,000</td><td>—</td><td>—</td><td class="gold">Rs. 20,500</td></tr>
+      <tr><td>July</td><td>Rs. 15,000</td><td>—</td><td>Rs. 15,000</td><td>—</td><td>—</td><td class="gold">Rs. 30,000</td></tr>
+      <tr><td>August</td><td>Rs. 30,000</td><td>Rs. 17,000</td><td>Rs. 15,000</td><td>—</td><td>—</td><td class="gold">Rs. 62,000</td></tr>
+      <tr><td>September</td><td>Rs. 48,000</td><td>Rs. 20,000</td><td>—</td><td>—</td><td>—</td><td class="gold">Rs. 68,000</td></tr>
+      <tr><td>October</td><td>Rs. 60,000</td><td>Rs. 22,000</td><td>—</td><td>Rs. 11,200</td><td>Rs. 12,000</td><td class="gold">Rs. 1,05,200</td></tr>
+      <tr><td>November</td><td>Rs. 72,000</td><td>Rs. 22,000</td><td>—</td><td>Rs. 24,000</td><td>Rs. 18,000</td><td class="gold">Rs. 1,36,000</td></tr>
+      <tr class="total-row"><td>December</td><td>Rs. 90,000</td><td>Rs. 25,000</td><td>—</td><td>Rs. 48,000</td><td>Rs. 24,000</td><td class="gold">Rs. 1,87,000</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card teal-card">
+    <div class="card-title teal">2027 — Assets Phase ✦ NEW</div>
+    <div class="t-wrap"><table>
+      <tr><th>Month</th><th>QR+Biz</th><th>2 Cabs</th><th>Dry Fruits</th><th>Godown Rent</th><th>Clothing</th><th class="teal">TOTAL</th></tr>
+      <tr><td>January</td><td>Rs. 1,00,000</td><td>Rs. 40,000</td><td>Rs. 22,000</td><td>—</td><td>Rs. 18,000</td><td class="teal">Rs. 1,80,000</td></tr>
+      <tr><td>April</td><td>Rs. 1,10,000</td><td>Rs. 40,000</td><td>Rs. 25,000</td><td>Rs. 10,000</td><td>Rs. 20,000</td><td class="teal">Rs. 2,05,000</td></tr>
+      <tr class="highlight-row"><td>June 2027</td><td>Rs. 1,20,000</td><td>Rs. 50,000</td><td>Rs. 30,000</td><td>Rs. 12,000</td><td>Rs. 22,000</td><td class="teal"><strong>Rs. 2,34,000</strong></td></tr>
+      <tr class="total-row"><td>Dec 2027</td><td>Rs. 1,50,000</td><td>Rs. 85,000</td><td>Rs. 40,000</td><td>Rs. 15,000</td><td>Rs. 25,000</td><td class="gold"><strong>Rs. 3,15,000</strong></td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- S8 LEGAL -->
+<section class="section" id="s8">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(155,89,182,0.12)">⚖️</div>
+    <div>
+      <div class="section-title-text">Legal, Compliance & Banking</div>
+      <div class="section-sub">Section 8 — Complete Checklist</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">8.1 Vistech Software Services</div>
+    <div class="t-wrap"><table>
+      <tr><th>Item</th><th>Status</th><th>Action</th></tr>
+      <tr><td>Proprietorship</td><td class="green">Done</td><td>Renew annually</td></tr>
+      <tr><td>GST</td><td class="teal">Check karo</td><td>20L+ revenue → mandatory</td></tr>
+      <tr><td>Current Account</td><td class="teal">Open karo</td><td>SBI ya HDFC — business name</td></tr>
+      <tr><td>Written Agreements</td><td class="red">Start NOW</td><td>Every client — WhatsApp pe bhi valid</td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">8.4 Banking Rules</div>
+    <ul class="blist">
+      <li>Har business ke liye alag current account — mixing se chaos hoga</li>
+      <li>UPI accept karo sab jagah — Paytm Business, PhonePe Business — free</li>
+      <li>Sabhi receipts Google Drive mein — GST audit ready</li>
+    </ul>
+  </div>
+</section>
+
+<!-- S9 ROUTINE -->
+<section class="section" id="s9">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(240,165,0,0.12)">⏰</div>
+    <div>
+      <div class="section-title-text">Daily Routine + Mindset Rules</div>
+      <div class="section-sub">Section 9 — Empire Builder Schedule</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">9.1 Daily Schedule — June-August 2026</div>
+    <div class="routine">
+      <div class="routine-row key"><div class="routine-time">5:00-5:30 AM</div><div class="routine-text">Wake up — Bholebaba mandir — clarity aati hai</div></div>
+      <div class="routine-row"><div class="routine-time">6:00-3:00 PM</div><div class="routine-text">Deal Share Mart job — seedha karo</div></div>
+      <div class="routine-row"><div class="routine-time">3:00-3:30 PM</div><div class="routine-text">Lunch — light rakhna</div></div>
+      <div class="routine-row biz"><div class="routine-time">3:30-7:00 PM</div><div class="routine-text">🎯 QR code market visits — 3-4 shops minimum</div></div>
+      <div class="routine-row biz"><div class="routine-time">7:00-8:00 PM</div><div class="routine-text">Follow ups — WhatsApp, calls</div></div>
+      <div class="routine-row biz"><div class="routine-time">8:00-9:00 PM</div><div class="routine-text">Vishtech Cars blog — 1 article (SEO)</div></div>
+      <div class="routine-row"><div class="routine-time">9:00-10:00 PM</div><div class="routine-text">Next day planning — shops list, kya bolna hai</div></div>
+      <div class="routine-row key"><div class="routine-time">10:00 PM</div><div class="routine-text">🛑 SLEEP — no negotiation — brain recovery</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">9.3 Mindset Rules</div>
+    <ol class="steps">
+      <li>Koi agreement ke bina kaam nahi — dost ho ya stranger</li>
+      <li>Ghar walo ko monthly income/expense report do — darr trust mein badlega</li>
+      <li>Ek din mein sab kuch nahi hoga — 6 mahine ka patience chahiye</li>
+      <li>AI tools use karo — Claude, Canva, Notion — competitors nahi kar rahe</li>
+      <li>Har asset ek ek step mein — sequence follow karo, panic nahi</li>
+    </ol>
+  </div>
+</section>
+
+<!-- S10 ACTIONS -->
+<section class="section" id="s10">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(240,165,0,0.12)">✅</div>
+    <div>
+      <div class="section-title-text">Final Answer — Kya Karna Hai Aur Kyun</div>
+      <div class="section-sub">Section 10 — Immediate Action Items</div>
+    </div>
+  </div>
+
+  <div class="action-list">
+    <div class="action-item">
+      <div class="action-num">1</div>
+      <div>
+        <div class="action-title">Deal Share Mart join karo — 6AM-3PM shift</div>
+        <div class="action-meta">Deadline: This week | Cash flow + ghar walo ka pressure khatam</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">2</div>
+      <div>
+        <div class="action-title">QR code free trial shop ka followup</div>
+        <div class="action-meta">Deadline: 24 hours | Proof of concept chahiye</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">3</div>
+      <div>
+        <div class="action-title">5 cafes daily visit — QR demo do</div>
+        <div class="action-meta">Deadline: Daily habit | Sales pipeline banana hai</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">4</div>
+      <div>
+        <div class="action-title">Cab loan pre-approval — HDFC/SBI</div>
+        <div class="action-meta">Deadline: 2 weeks | August mein ready rehna hai</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <div class="action-num">5</div>
+      <div>
+        <div class="action-title">FSSAI + GST apply — dry fruits ke liye</div>
+        <div class="action-meta">Deadline: 1 month | October launch ke liye 30 din process</div>
+      </div>
+    </div>
+    <div class="action-item" style="border-color:var(--teal)">
+      <div class="action-num teal">6</div>
+      <div>
+        <div class="action-title" style="color:var(--teal)">New Loha Mandi Sikar Road — site visit karo</div>
+        <div class="action-meta">Deadline: December 2026 | Plot rates check karo, broker se baat karo — January 2027 purchase target</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== S11 — NEW SECTION — PLOT + LOHA MANDI + GODOWN ==================== -->
+<section class="section" id="s11">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(0,201,167,0.15)">🏗️</div>
+    <div>
+      <div class="section-title-text">Plot + Loha Mandi + Godown — Real Estate Asset</div>
+      <div class="section-sub">Section 11 — January 2027 Onwards ✦ NEW ADDITION</div>
+    </div>
+    <span class="new-tag">NEW</span>
+  </div>
+
+  <div class="card teal-card">
+    <div class="card-title teal">11.1 Teri Soch Kyun Sahi Hai — Location Intelligence</div>
+    <p style="font-size:0.87rem;margin-bottom:1rem">Purani Loha Mandi Sindhi Camp se shift ho rahi hai. New Loha Mandi — Sikar Road, Harmada area — 333 acres JDA ka commercial/industrial zone. Transport Nagar, Vishwakarma Industrial Area ke paas. Ye shift hone ke baad ye area aur valuable ho jaayega.</p>
+    <ul class="blist">
+      <li>Transport ke liye purani jagah pe jagah khatam ho rahi hai — isliye shift</li>
+      <li>Naye traders wahan jaayenge — demand guaranteed</li>
+      <li>Godam ki zaroorat hamesha rahegi loha traders ko</li>
+      <li>Location pe early aana = maximum appreciation</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">11.2 Plot Size — 50 Gaj Plan</div>
+    <div class="property-grid">
+      <div class="prop-card active">
+        <div class="prop-icon">📐</div>
+        <div class="prop-title">Plot Size</div>
+        <div class="prop-value highlight">50 Gaj</div>
+        <div class="prop-value">(≈ 450 sq ft)</div>
+      </div>
+      <div class="prop-card active">
+        <div class="prop-icon">📍</div>
+        <div class="prop-title">Location</div>
+        <div class="prop-value highlight">Sikar Road, Harmada</div>
+        <div class="prop-value">New Loha Mandi JDA Zone</div>
+      </div>
+      <div class="prop-card active">
+        <div class="prop-icon">💰</div>
+        <div class="prop-title">Plot Rate</div>
+        <div class="prop-value highlight">Rs. 8k-25k/gaj</div>
+        <div class="prop-value">Type pe depend</div>
+      </div>
+      <div class="prop-card active">
+        <div class="prop-icon">🏦</div>
+        <div class="prop-title">Down Payment</div>
+        <div class="prop-value highlight">Rs. 1.2-2.5 lakh</div>
+        <div class="prop-value">20-25% of total</div>
+      </div>
+    </div>
+
+    <div class="t-wrap" style="margin-top:1rem"><table>
+      <tr><th>Plot Type</th><th>Rate/Gaj</th><th>50 Gaj Total</th><th>Down Payment (25%)</th><th>EMI (10 yr)</th></tr>
+      <tr><td>Private non-JDA</td><td>Rs. 8,000-12,000</td><td>Rs. 4-6 lakh</td><td class="teal">Rs. 1-1.5 lakh</td><td>Rs. 3,500-5,000</td></tr>
+      <tr class="highlight-row"><td>JDA approved commercial</td><td>Rs. 15,000-25,000</td><td>Rs. 7.5-12.5 lakh</td><td class="teal">Rs. 1.9-3.1 lakh</td><td>Rs. 6,500-10,500</td></tr>
+      <tr><td>Prime road-facing</td><td>Rs. 25,000-40,000</td><td>Rs. 12.5-20 lakh</td><td>Rs. 3-5 lakh</td><td>Rs. 10-17k</td></tr>
+    </table></div>
+
+    <div class="card warn" style="margin-top:1rem;margin-bottom:0">
+      <div class="card-title" style="color:var(--orange)">⚠️ Sahi Time — January 2027</div>
+      <p style="font-size:0.85rem">Abhi plot lena galat hai — paas mein sirf Rs. 1 lakh hai, cab down payment chahiye. <strong>January 2027 target karo</strong> — tab QR code se Rs. 1 lakh/month aa raha hoga, cab ki EMI comfortable hogi, aur Rs. 2-2.5 lakh down payment available hogi.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">11.3 Godam Plan — Construction + Rental Income</div>
+    <div class="t-wrap"><table>
+      <tr><th>Item</th><th>Details</th><th>Cost</th></tr>
+      <tr><td>Plot purchase (Jan 2027)</td><td>50 gaj, JDA approved</td><td>Rs. 7.5-12.5 lakh total</td></tr>
+      <tr><td>Basic shed / godam construction</td><td>Tin shed + floor — 40x45 sqft</td><td>Rs. 1.5-2 lakh</td></tr>
+      <tr><td>Gate + security + electricity</td><td>One time setup</td><td>Rs. 50,000</td></tr>
+      <tr class="total-row"><td><strong>Total Godam Setup</strong></td><td></td><td><strong>Rs. 3-5 lakh</strong></td></tr>
+    </table></div>
+
+    <div style="margin-top:1rem">
+      <div class="card-title" style="color:var(--green)">Rental Income — Loha Mandi Traders Ko Do</div>
+      <div class="t-wrap"><table>
+        <tr><th>Tenant Type</th><th>Monthly Rent</th><th>Annual</th></tr>
+        <tr><td>Iron/Steel small trader — storage</td><td>Rs. 6,000-10,000</td><td>Rs. 72k-1.2L</td></tr>
+        <tr><td>Logistics/transport company</td><td>Rs. 8,000-15,000</td><td>Rs. 96k-1.8L</td></tr>
+        <tr class="highlight-row"><td><strong>Conservative target</strong></td><td><strong>Rs. 8,000-12,000</strong></td><td><strong>Rs. 1L+</strong></td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">11.4 Loha Mandi Trading — Future Business</div>
+    <p style="font-size:0.87rem;margin-bottom:1rem;color:var(--text2)">Godam banne ke baad — khud bhi thodi iron/steel trading shuru kar sakta hai. Small scale se test karo.</p>
+    <div class="t-wrap"><table>
+      <tr><th>Item</th><th>Wholesale</th><th>Retail Margin</th><th>Monthly Volume</th><th>Profit</th></tr>
+      <tr><td>TMT Bars (construction steel)</td><td>Rs. 52-55/kg</td><td>Rs. 3-5/kg</td><td>5,000 kg</td><td class="green">Rs. 15-25k</td></tr>
+      <tr><td>MS Pipe (round/square)</td><td>Rs. 55-60/kg</td><td>Rs. 4-6/kg</td><td>3,000 kg</td><td class="green">Rs. 12-18k</td></tr>
+      <tr><td>Sheet metal / Plates</td><td>Rs. 58-65/kg</td><td>Rs. 3-5/kg</td><td>2,000 kg</td><td class="green">Rs. 6-10k</td></tr>
+      <tr class="total-row"><td><strong>Combined (conservative)</strong></td><td></td><td></td><td></td><td><strong>Rs. 33-53k/month</strong></td></tr>
+    </table></div>
+
+    <div class="card warn" style="margin:1rem 0 0">
+      <div class="card-title" style="color:var(--orange)">⚠️ Trading Capital Required</div>
+      <p style="font-size:0.85rem">Loha trading mein working capital zaroori hai — stock kharidna padta hai. <strong>Minimum Rs. 5-10 lakh</strong> working capital chahiye. Ye Phase 5 (mid 2027) mein consider karo jab monthly income Rs. 2.5L+ ho. Pehle godam rental se start karo — zero risk hai.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">11.5 Legal + Registration — Plot ke Liye</div>
+    <ul class="blist">
+      <li>Sale Deed + Registry: Sub-registrar office Jaipur — stamp duty 5-6% of plot value</li>
+      <li>JDA NOC: Agar JDA approved plot hai — verify karo</li>
+      <li>Property Tax: Nagar Nigam Jaipur — plot register hone ke baad</li>
+      <li>Construction Permission: Building plan approve karana — tin shed ke liye bhi simple permission chahiye</li>
+      <li>Plot Loan: SBI Property Loan — 20-25% down, 75-80% loan — 10-15 saal tenure</li>
+      <li>RERA check: Commercial plot ka RERA registration — fraud se bachega</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== S12 — 2027 ASSET EMPIRE ==================== -->
+<section class="section" id="s12">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(240,165,0,0.15)">🏛️</div>
+    <div>
+      <div class="section-title-text">2027 Asset Empire — Complete Picture</div>
+      <div class="section-sub">Section 12 — Multiple Assets Running Together ✦ NEW</div>
+    </div>
+    <span class="new-tag">NEW</span>
+  </div>
+
+  <div class="card highlight">
+    <div class="card-title">December 2027 — Tera Complete Portfolio</div>
+    <div class="income-hero">
+      <div class="income-card">
+        <div class="income-label">QR Code SaaS</div>
+        <div class="income-amount">₹1.5L</div>
+      </div>
+      <div class="income-card">
+        <div class="income-label">Cab Fleet (5 cabs)</div>
+        <div class="income-amount">₹85k</div>
+      </div>
+      <div class="income-card">
+        <div class="income-label">Dry Fruits</div>
+        <div class="income-amount">₹40k</div>
+      </div>
+      <div class="income-card">
+        <div class="income-label">Clothing Store</div>
+        <div class="income-amount">₹25k</div>
+      </div>
+      <div class="income-card teal-card-sm">
+        <div class="income-label">Godam Rent 🆕</div>
+        <div class="income-amount">₹15k</div>
+      </div>
+      <div class="income-card gold-card">
+        <div class="income-label">TOTAL / MONTH</div>
+        <div class="income-amount">₹3.15L</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Assets Built By December 2027</div>
+    <div class="t-wrap"><table>
+      <tr><th>Asset</th><th>Type</th><th>Value</th><th>Monthly Income</th></tr>
+      <tr><td>QR Code Client Base (100+ clients)</td><td>Digital SaaS</td><td>Rs. 20-30L (if sold)</td><td class="green">Rs. 1.5L</td></tr>
+      <tr><td>Cab Fleet (5 Dzire)</td><td>Physical Vehicle</td><td>Rs. 15-20L market value</td><td class="green">Rs. 85k</td></tr>
+      <tr><td>50 Gaj Plot — New Loha Mandi</td><td>Real Estate</td><td>Rs. 10-18L (+ appreciation)</td><td class="teal">Rs. 15k (rent)</td></tr>
+      <tr><td>Dry Fruits Brand + Amazon Store</td><td>Product Business</td><td>Rs. 5-8L (if sold)</td><td class="green">Rs. 40k</td></tr>
+      <tr><td>Clothing Brand</td><td>Product Business</td><td>Rs. 3-5L</td><td class="green">Rs. 25k</td></tr>
+      <tr class="total-row"><td><strong>Total Net Worth</strong></td><td></td><td><strong>Rs. 53-81 lakh</strong></td><td><strong>Rs. 3.15L/month</strong></td></tr>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Next After 2027 — 2028-2030 Vision</div>
+    <div class="timeline">
+      <div class="tl-item new-item">
+        <div class="tl-date">2028</div>
+        <div class="tl-content">Plot pe 2nd floor construction — ya 2nd plot adjacent le lo. Iron trading desk proper shuru karo with working capital.</div>
+      </div>
+      <div class="tl-item new-item">
+        <div class="tl-date">2028-2029</div>
+        <div class="tl-content">Mutual Fund SIP — Rs. 30,000/month — wealth compounding shuru. Rs. 10 crore by 2035 possible.</div>
+      </div>
+      <div class="tl-item new-item">
+        <div class="tl-date">2029-2030</div>
+        <div class="tl-content">Commercial property second — Jaipur ka growing area pick karo. Animal welfare + hospital — social legacy start karo. <span class="tl-amount">Empire Builder level = achieved.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINAL BOX -->
+  <div class="empire-final">
+    <div style="font-size:0.8rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.1em">December 2027 Target</div>
+    <div class="empire-total">₹3,15,000 / Month</div>
+    <div class="income-hero" style="max-width:600px;margin:1.2rem auto">
+      <div class="income-card"><div class="income-label">6 Income Streams</div><div class="income-amount" style="font-size:1.5rem">6</div></div>
+      <div class="income-card"><div class="income-label">Physical Assets</div><div class="income-amount" style="font-size:1.5rem">5+</div></div>
+      <div class="income-card"><div class="income-label">Net Worth</div><div class="income-amount" style="font-size:1.2rem">₹53-81L</div></div>
+    </div>
+    <div class="empire-quote">
+      Tu 24 saal ka hai.<br>
+      Rs. 3.15 lakh/month + real estate asset + cab fleet — ye sab ek sequence mein plan hai.<br><br>
+      <strong style="color:var(--gold)">QR Code → Cab → Plot → Loha Mandi → Empire.</strong><br>
+      Ek ek step. Ek ek asset. Sab kuch hoga — bas sequence follow karo.<br><br>
+      <span style="color:var(--teal)">Hospitals. Animal seva. Real estate. Sab aayega.</span>
+    </div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<footer>
+  VISTECH EMPIRE v2.0 — Built by one focused founder.<br>
+  Vistech Software Services | May 2026 | Jaipur, Rajasthan<br>
+  <span style="color:var(--gold)">QR SaaS ▸ Cab Fleet ▸ Dry Fruits ▸ Clothing ▸ Plot + Loha Mandi + Godown</span>
+</footer>
+
+</body>
+</html>
