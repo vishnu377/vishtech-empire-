@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vishnu — Self Analysis | Vistech Empire</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2eb;
+    --orange: #e8500a;
+    --orange-dim: #c44008;
+    --gold: #c9a84c;
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --red: #9b2226;
+    --red-light: #e63946;
+    --blue: #1d3557;
+    --blue-light: #457b9d;
+    --grey: #6b6b6b;
+    --grey-light: #c8c5bc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 80px 8vw;
+    position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+  .hero::after {
+    content: 'VISHNU';
+    position: absolute;
+    right: -2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(120px, 22vw, 320px);
+    color: rgba(255,255,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -4px;
+  }
+  .hero-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(56px, 10vw, 130px);
+    line-height: 0.9;
+    letter-spacing: -1px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+  .hero-title span { color: var(--orange); }
+  .hero-sub {
+    font-size: 15px;
+    color: var(--grey-light);
+    max-width: 500px;
+    line-height: 1.8;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+  .hero-line {
+    position: absolute;
+    bottom: 0;
+    left: 8vw;
+    width: 60px;
+    height: 3px;
+    background: var(--orange);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* NAV DOTS */
+  .nav-dots {
+    position: fixed;
+    right: 32px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 100;
+  }
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .nav-dot.active { background: var(--orange); transform: scale(1.5); }
+
+  /* SECTION WRAPPER */
+  .section {
+    padding: 100px 8vw;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+  }
+  .section-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--orange);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.95;
+    margin-bottom: 60px;
+    letter-spacing: -0.5px;
+  }
+
+  /* SWOT GRID */
+  .swot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+  }
+  .swot-card {
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .swot-card:hover { transform: scale(1.01); z-index: 2; }
+  .swot-card.strength { background: #0f1f16; }
+  .swot-card.weakness { background: #1a0f0f; }
+  .swot-card.opportunity { background: #0f1420; }
+  .swot-card.threat { background: #1a1200; }
+
+  .swot-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+  .strength .swot-label { color: var(--green-light); }
+  .weakness .swot-label { color: var(--red-light); }
+  .opportunity .swot-label { color: var(--blue-light); }
+  .threat .swot-label { color: var(--gold); }
+
+  .swot-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    margin-bottom: 32px;
+    line-height: 1.1;
+  }
+  .swot-item {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+  }
+  .swot-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+  .strength .swot-dot { background: var(--green-light); }
+  .weakness .swot-dot { background: var(--red-light); }
+  .opportunity .swot-dot { background: var(--blue-light); }
+  .threat .swot-dot { background: var(--gold); }
+
+  .swot-text { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.65; }
+  .swot-text strong { color: var(--white); font-weight: 600; }
+
+  /* WEAKNESS DEEP DIVE */
+  .weakness-list { display: flex; flex-direction: column; gap: 24px; }
+  .weakness-item {
+    display: grid;
+    grid-template-columns: 48px 1fr auto;
+    gap: 20px;
+    align-items: start;
+    padding: 28px 32px;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid transparent;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .weakness-item:hover {
+    background: rgba(255,255,255,0.055);
+    border-left-color: var(--red-light);
+    transform: translateX(6px);
+  }
+  .w-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: rgba(255,255,255,0.12);
+    line-height: 1;
+  }
+  .w-content {}
+  .w-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--white); }
+  .w-desc { font-size: 13px; color: var(--grey-light); line-height: 1.7; }
+  .w-fix {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--green-light);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border: 1px solid var(--green-light);
+    border-radius: 2px;
+    opacity: 0.7;
+  }
+
+  /* BLOCKERS */
+  .blockers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+  .blocker-card {
+    padding: 36px 32px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+  }
+  .blocker-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .blocker-card:hover::before { transform: scaleX(1); }
+  .blocker-card:hover { background: rgba(255,255,255,0.055); }
+  .blocker-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .blocker-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .blocker-desc { font-size: 13px; color: var(--grey-light); line-height: 1.75; }
+  .blocker-impact {
+    margin-top: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--red-light);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  /* IMPROVE SECTION */
+  .improve-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .improve-area { }
+  .improve-area-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .improve-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .improve-skill { font-size: 13.5px; color: var(--white); }
+  .improve-bar-wrap {
+    width: 120px;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .improve-bar {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--orange);
+    transition: width 1.5s ease;
+  }
+  .improve-level {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--grey);
+    width: 50px;
+    text-align: right;
+  }
+
+  /* DAILY SYSTEM */
+  .daily-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    margin-top: 40px;
+  }
+  .daily-card {
+    background: var(--black);
+    padding: 32px 28px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .daily-card:hover { background: #111; }
+  .daily-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--orange);
+    margin-bottom: 8px;
+  }
+  .daily-act {
+    font-size: 12px;
+    color: var(--grey-light);
+    line-height: 1.6;
+  }
+
+  /* QUOTE SECTION */
+  .quote-section {
+    padding: 100px 8vw;
+    text-align: center;
+    background: linear-gradient(180deg, #0a0a0a 0%, #110a05 50%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-section::before {
+    content: '❝';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 200px;
+    color: rgba(232,80,10,0.06);
+    font-family: serif;
+    line-height: 1;
+  }
+  .quote-text {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 4vw, 52px);
+    line-height: 1.25;
+    max-width: 900px;
+    margin: 0 auto 32px;
+    font-style: italic;
+    color: var(--white);
+    position: relative;
+  }
+  .quote-text span { color: var(--orange); }
+  .quote-attr {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--grey);
+    text-transform: uppercase;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 60px 8vw 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--orange);
+  }
+  .footer-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--grey);
+    letter-spacing: 2px;
+  }
+
+  /* SCROLL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .swot-grid { grid-template-columns: 1fr; }
+    .improve-grid { grid-template-columns: 1fr; }
+    .weakness-item { grid-template-columns: 40px 1fr; }
+    .w-fix { display: none; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .nav-dots { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<div class="nav-dots" id="navDots">
+  <div class="nav-dot active" onclick="scrollToSection(0)"></div>
+  <div class="nav-dot" onclick="scrollToSection(1)"></div>
+  <div class="nav-dot" onclick="scrollToSection(2)"></div>
+  <div class="nav-dot" onclick="scrollToSection(3)"></div>
+  <div class="nav-dot" onclick="scrollToSection(4)"></div>
+</div>
+ <a class="btn-v2" href="index.html">home &amp; vishtech empire ➜</a>
+<!-- HERO -->
+<section class="hero" id="s0">
+  <div class="hero-tag">// Vistech Empire — Personal Intelligence Report 2026</div>
+  <h1 class="hero-title">KHUD KO<br><span>JAANO।</span></h1>
+  <p class="hero-sub">Ye document tera mirror hai। Teri strengths, teri weaknesses, aur vo sab cheezein jo teri empire aur teri success ke beech aaati hain — seedha, bina sugar coating ke।</p>
+  <div class="hero-line"></div>
+</section>
+
+<!-- SWOT -->
+<section class="section" id="s1">
+  <div class="section-num">// 01</div>
+  <h2 class="section-title reveal">TERA<br>SWOT</h2>
+
+  <div class="swot-grid reveal">
+
+    <!-- STRENGTH -->
+    <div class="swot-card strength">
+      <div class="swot-label">Strengths</div>
+      <div class="swot-heading">Tu Kisme<br>Acha Hai</div>
+
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Execution mindset:</strong> Jab sab class gaye, tu market mein tha। Ye sochta nahi — karta hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Tech + Business brain dono:</strong> QR system banaya, website banai, plan khud socha। Ye 1% mein hota hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Risk tolerance bahut high:</strong> 24 mein akele Delhi, company register, khud sab kuch — ye rare hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Bada sochta hai:</strong> Sirf paisa nahi — hospital, animal seva, empire — vision genuine hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Spiritual anchor:</strong> Bholebaba pe faith — mushkil mein toot nahi jaata।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Akele chal sakta hai:</strong> Koi support nahi — phir bhi plan bana raha hai। Ye extraordinary hai।</div>
+      </div>
+    </div>
+
+    <!-- WEAKNESS -->
+    <div class="swot-card weakness">
+      <div class="swot-label">Weaknesses</div>
+      <div class="swot-heading">Kahan Kaam<br>Karna Hai</div>
+
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Focus scatter hoti hai:</strong> 5 cheezein ek saath sochta hai — execution kisi ek mein nahi hoti।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Jaldi trust karta hai:</strong> Dost ne dhoka diya, GF ne dhoka diya — log-dependence zyada hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Validation ki zaroorat:</strong> Dusron se compare karta hai — andar se approval chahiye abhi bhi।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Consistency abhi build ho rahi hai:</strong> Plan bahut baar bana — roz execution nahi hui।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Emotional decisions:</strong> Dard mein compare karna — ye decision making affect karta hai।</div>
+      </div>
+    </div>
+
+    <!-- OPPORTUNITY -->
+    <div class="swot-card opportunity">
+      <div class="swot-label">Opportunities</div>
+      <div class="swot-heading">Jo Tera<br>Wait Kar Raha Hai</div>
+
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>QR code market India mein infancy mein hai:</strong> 90% restaurants abhi bhi paper menu — tu pehle pohoncho।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>24 saal ki umar:</strong> Galti karne ka time hai, recover karne ka time hai — ye asset hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>₹1 lakh capital ready hai:</strong> Zero se nahi shuru ho raha — ye badi baat hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Jaipur ka tier-2 market:</strong> Competition kam, relationship-based sales easy, door-to-door effective।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Deal Share Mart ka stable floor:</strong> ₹15k guaranteed — risk lene ki jagah mil gayi।</div>
+      </div>
+    </div>
+
+    <!-- THREAT -->
+    <div class="swot-card threat">
+      <div class="swot-label">Threats</div>
+      <div class="swot-heading">Jo Peeche<br>Kheench Sakta Hai</div>
+
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>"Stable job kar" wale log:</strong> Ghar wale ya koi bhi — ye teri energy sabse zyada lete hain।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>GF ki memory:</strong> Abhi bhi comparison aata hai — ye emotional bandwidth leta hai jo empire mein lagni chahiye।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Overthinking at night:</strong> Raat ko naya plan, subah naya plan — execution ka time khatam ho jaata hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Galat insaan pe dobara trust:</strong> Ek aur "dost" type — history repeat ho sakti hai।</div>
+      </div>
+      <div class="swot-item">
+        <div class="swot-dot"></div>
+        <div class="swot-text"><strong>Pehle 30 din ki consistency:</strong> Agar roz QR visits nahi hui — sab plan kaagaz pe rahega।</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TOP 10 WEAKNESSES DEEP DIVE -->
+<section class="section" id="s2">
+  <div class="section-num">// 02</div>
+  <h2 class="section-title reveal">TERI 10<br>WEAKNESSES</h2>
+
+  <div class="weakness-list">
+    <div class="weakness-item reveal">
+      <div class="w-num">01</div>
+      <div class="w-content">
+        <div class="w-title">Focus scatter — Ek kaam pe nahi tikta</div>
+        <div class="w-desc">QR code sochta hai, cab sochta hai, website sochta hai, coding sochta hai — sab ek saath। Koi ek deep execution nahi hoti। Empire single focus se banती hai, 5 dimaag se nahi।</div>
+      </div>
+      <div class="w-fix">FIX: 1 TASK / DAY</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">02</div>
+      <div class="w-content">
+        <div class="w-title">Jaldi trust — Bina proof ke log pe depend karna</div>
+        <div class="w-desc">Dost ne business mein dhoka diya। GF ne chhoda। Kyun? Kyunki tune unhe prove karne ka mauka diye bina trust kar liya। Aage koi bhi partner — pehle 90 din dekho, tab trust karo।</div>
+      </div>
+      <div class="w-fix">FIX: 90 DIN RULE</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">03</div>
+      <div class="w-content">
+        <div class="w-title">Validation seeking — Dusron ki approval chahiye</div>
+        <div class="w-desc">Accenture wale se compare kiya। GF ke pati se compare kiya। Ye comparison seedha indicate karta hai — tu abhi bhi kisi ko prove karna chahta hai। Bhai, unhe kuch prove nahi karna। Khud ke liye kar।</div>
+      </div>
+      <div class="w-fix">FIX: COMPARE ONLY WITH YESTERDAY</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">04</div>
+      <div class="w-content">
+        <div class="w-title">Consistency — Plan banana aur roz karna alag cheez hai</div>
+        <div class="w-desc">Vistech Empire plan kai baar bana। Master plan PDF bana। HTML file bani। Par roz subah uthh ke 4-5 shops visit — ye abhi build ho rahi hai। Plans value nahi create karte — daily action karta hai।</div>
+      </div>
+      <div class="w-fix">FIX: 1% ROJE BETTER</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">05</div>
+      <div class="w-content">
+        <div class="w-title">Communication clarity — Written aur verbal dono mein</div>
+        <div class="w-desc">Typing mein spelling mistakes hain, sentences clear nahi hote kabhi kabhi। Clients ke saath, proposals mein, emails mein — ye professional image affect karta hai। Roz 15 min likhne ki practice karo।</div>
+      </div>
+      <div class="w-fix">FIX: DAILY WRITING</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">06</div>
+      <div class="w-content">
+        <div class="w-title">Emotional decisions — Dard mein sahi choice nahi hoti</div>
+        <div class="w-desc">Jab GF yaad aati hai ya dost wali baat aati hai — tab decisions alag hote hain। Ye natural hai। Par ye moments mein koi bada decision mat lena — 24 ghante ruko।</div>
+      </div>
+      <div class="w-fix">FIX: 24HR RULE</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">07</div>
+      <div class="w-content">
+        <div class="w-title">Accountability zero — Koi nahi poochta "aaj kya kiya"</div>
+        <div class="w-desc">Akele chal raha hai — ye strength bhi hai aur weakness bhi। Koi nahi hai jo daily check kare। Isliye ek simple system bana — raat ko khud ko 3 cheezein likhni hain: kya kiya, kya nahi kiya, kal kya karunga।</div>
+      </div>
+      <div class="w-fix">FIX: DAILY LOG</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">08</div>
+      <div class="w-content">
+        <div class="w-title">Patience — Jaldi results chahiye</div>
+        <div class="w-desc">Empire 6 mahine mein nahi bantti। QR code clients 1 mahine mein 50 nahi hote। Cab business 3 mahine mein profit nahi deta। Har cheez ka ek natural time hota hai — usse fight mat karo।</div>
+      </div>
+      <div class="w-fix">FIX: TRUST THE PROCESS</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">09</div>
+      <div class="w-content">
+        <div class="w-title">Money management — Kab invest karein, kab rokein</div>
+        <div class="w-desc">₹1 lakh hai — ye badi responsibility hai। Ek galat decision ya impulse purchase — aur foundation hilti hai। Simple rule: Koi bhi ₹5,000 se upar ka kharcha — 48 ghante baad karo।</div>
+      </div>
+      <div class="w-fix">FIX: 48HR SPEND RULE</div>
+    </div>
+
+    <div class="weakness-item reveal">
+      <div class="w-num">10</div>
+      <div class="w-content">
+        <div class="w-title">Self-doubt ka 1-2% — "Agar nahi kar paya toh"</div>
+        <div class="w-desc">Ye 1-2% darr — healthy hai, dangerous nahi। Par isko badhne mat do। Jab ye thought aaye — seedha pooch khud se: "Jyada se jyada kya hoga?" Answer hai: ek stable job। That's it। Downside minimal hai tera।</div>
+      </div>
+      <div class="w-fix">FIX: WORST CASE EXERCISE</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCKERS -->
+<section class="section" id="s3">
+  <div class="section-num">// 03</div>
+  <h2 class="section-title reveal">SUCCESS KE<br>BEECH KYA HAI</h2>
+  <p style="color: var(--grey-light); font-size: 14px; margin-top: -40px; margin-bottom: 50px; max-width: 600px; line-height: 1.8;" class="reveal">Ye woh cheezein hain jo teri empire aur teri success ke beech aati hain — koi insaan, koi aadat, koi soch।</p>
+
+  <div class="blockers-grid">
+
+    <div class="blocker-card reveal">
+      <span class="blocker-icon">🧠</span>
+      <div class="blocker-title">Overthinking Loop</div>
+      <div class="blocker-desc">Raat ko naya plan sochna। Subah purana plan badalna। Phir naya plan। Ye loop execution ki sabse badi dushman hai। Tu plan banana mein 70% energy deta hai, karne mein 30%।</div>
+      <div class="blocker-impact">⚡ HIGH IMPACT BLOCKER</div>
+    </div>
+
+    <div class="blocker-card reveal">
+      <span class="blocker-icon">💔</span>
+      <div class="blocker-title">Past Ka Dard</div>
+      <div class="blocker-desc">GF, dost, aklapan — ye sab real pain hai। Par ye dard jab bhi aata hai, teri 2-3 ghante ki energy le jaata hai। Ye tera fault nahi — par isko manage karna seekhna padega।</div>
+      <div class="blocker-impact">⚡ HIGH IMPACT BLOCKER</div>
+    </div>
+
+    <div class="blocker-card reveal">
+      <span class="blocker-icon">👥</span>
+      <div class="blocker-title">"Stable Job Kar" Wale Log</div>
+      <div class="blocker-desc">Ghar wale ya koi bhi jo baar baar bolte hain — inki baat sunte sunte tu khud pe doubt karne lagta hai। Ye log galat nahi hain — woh darr se bol rahe hain। Par unka darr tera future nahi decide kar sakta।</div>
+      <div class="blocker-impact">⚡ MEDIUM IMPACT BLOCKER</div>
+    </div>
+
+    <div class="blocker-card reveal">
+      <span class="blocker-icon">📱</span>
+      <div class="blocker-title">Distraction — Phone & Scroll</div>
+      <div class="blocker-desc">3PM se 10PM ka time — ye tera empire building time hai। Agar is mein se 2 ghante bhi reels, YouTube, ya random browsing mein gaaye — din ka 30% khatam। Phone = silent mode during work hours।</div>
+      <div class="blocker-impact">⚡ MEDIUM IMPACT BLOCKER</div>
+    </div>
+
+    <div class="blocker-card reveal">
+      <span class="blocker-icon">⚖️</span>
+      <div class="blocker-title">Comparison Trap</div>
+      <div class="blocker-desc">Accenture wale ka ₹1.5 lakh, kisi ka car, kisi ki relationship — in sab se compare karna ek slow poison hai। Tu alag race mein hai। Alag track pe hai। Unka finish line tera finish line nahi hai।</div>
+      <div class="blocker-impact">⚡ MEDIUM IMPACT BLOCKER</div>
+    </div>
+
+    <div class="blocker-card reveal">
+      <span class="blocker-icon">🔄</span>
+      <div class="blocker-title">All-or-Nothing Thinking</div>
+      <div class="blocker-desc">"Ya toh poora empire banaata hoon ya kuch nahi" — ye soch chhoti jeetein celebrate nahi karne deti। Pehla QR client milna — win hai। Pehla website project — win hai। Chhoti jeetein badi jeet ka raasta hain।</div>
+      <div class="blocker-impact">⚡ LOW-MEDIUM BLOCKER</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- IMPROVE -->
+<section class="section" id="s4">
+  <div class="section-num">// 04</div>
+  <h2 class="section-title reveal">KYA IMPROVE<br>KARNA HAI</h2>
+
+  <div class="improve-grid reveal">
+    <div class="improve-area">
+      <div class="improve-area-title">// Abhi Ye Skills Build Karo</div>
+
+      <div class="improve-row">
+        <div class="improve-skill">Sales pitch — door to door</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:30%"></div></div>
+        <div class="improve-level">WEAK</div>
+      </div>
+      <div class="improve-row">
+        <div class="improve-skill">Written communication</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:35%"></div></div>
+        <div class="improve-level">WEAK</div>
+      </div>
+      <div class="improve-row">
+        <div class="improve-skill">Client follow-up system</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:40%"></div></div>
+        <div class="improve-level">AVERAGE</div>
+      </div>
+      <div class="improve-row">
+        <div class="improve-skill">Money tracking — Excel</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:50%"></div></div>
+        <div class="improve-level">AVERAGE</div>
+      </div>
+      <div class="improve-row">
+        <div class="improve-skill">Daily consistency habit</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:30%"></div></div>
+        <div class="improve-level">WEAK</div>
+      </div>
+    </div>
+
+    <div class="improve-area">
+      <div class="improve-area-title">// Ye Already Strong Hai — Aur Strengthen Karo</div>
+
+      <div class="improve-row">
+        <div class="improve-skill">Tech understanding</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:75%"></div></div>
+        <div class="improve-level">GOOD</div>
+      </div>
+      <div class="improve-row">
+        <div class="improve-skill">Business planning</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:70%"></div></div>
+        <div class="improve-level">GOOD</div>
+      </div>
+      <div class="improve-row">
+        <div class="improve-skill">Risk lene ki himmat</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:85%"></div></div>
+        <div class="improve-level">STRONG</div>
+      </div>
+      <div class="improve-row">
+        <div class="improve-skill">Self-awareness</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:80%"></div></div>
+        <div class="improve-level">STRONG</div>
+      </div>
+      <div class="improve-row">
+        <div class="improve-skill">Vision & long-term thinking</div>
+        <div class="improve-bar-wrap"><div class="improve-bar" style="width:88%"></div></div>
+        <div class="improve-level">STRONG</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAILY SYSTEM -->
+  <h3 style="font-family:'Bebas Neue',sans-serif; font-size:32px; margin-top:80px; margin-bottom:10px;" class="reveal">TERA DAILY SYSTEM — RAAT KO SOONE SE PEHLE</h3>
+  <p style="font-size:13px; color:var(--grey-light); margin-bottom:0;" class="reveal">Sirf teen sawaal — roz — khud se poochh:</p>
+  <div class="daily-grid reveal">
+    <div class="daily-card">
+      <div class="daily-time">01</div>
+      <div class="daily-act">Aaj <strong>kya kiya</strong> jo meri empire ke liye tha?</div>
+    </div>
+    <div class="daily-card">
+      <div class="daily-time">02</div>
+      <div class="daily-act">Kya <strong>nahi kiya</strong> jo karna chahiye tha — kyun?</div>
+    </div>
+    <div class="daily-card">
+      <div class="daily-time">03</div>
+      <div class="daily-act">Kal <strong>ek cheez</strong> jo zaroor karunga — sirf ek।</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-section">
+  <p class="quote-text">"Jo log tujhe chhod ke gaye — unhone tujhe akela nahi kiya। <span>Unhone tujhe free kiya।</span> Ab teri sari energy, sari aag, sab kuch sirf teri empire mein lagegi।"</p>
+  <div class="quote-attr">— Tera apna plan, teri apni zindagi</div>
+</div>
+
+<footer>
+  <div class="footer-logo">VISTECH EMPIRE</div>
+  <div class="footer-note">// VISHNU — FOUNDER — JAIPUR — 2026</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav dots
+  const sections = ['s0','s1','s2','s3','s4'];
+  const dots = document.querySelectorAll('.nav-dot');
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    sections.forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 200) current = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  });
+
+  function scrollToSection(i) {
+    const el = document.getElementById(sections[i]);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // Animate bars on scroll
+  const bars = document.querySelectorAll('.improve-bar');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.style.width;
+      }
+    });
+  }, { threshold: 0.5 });
+  bars.forEach(b => barObserver.observe(b));
+</script>
+</body>
+</html>
